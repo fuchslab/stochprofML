@@ -131,7 +131,7 @@ function(model,dataset,n,TY,genenames=NULL,fix.mu=F,fixed.mu,par.range=NULL,prev
             # alternately carry out grid search and Nelder-Mead
             for (method in c("grid","optim")) {
                # determine appropriate parameter range ("high-likelihood region")
-#to do get.range (n=n)
+
                this.range <- get.range(method=choice,prev.result=result,dataset=dataset,n=n,TY=TY,fix.mu=fix.mu,fixed.mu=fixed.mu)
                if (is.null(this.range)) {
                   this.range <- par.range
@@ -147,7 +147,7 @@ function(model,dataset,n,TY,genenames=NULL,fix.mu=F,fixed.mu,par.range=NULL,prev
                }
 
                # compute log-likelihood
-#to do stochprof.search
+
                result <- stochprof.search(dataset=dataset,genenames=genenames,n=n,method=method,TY=TY,M=M,print.output=print.output,par.range=this.range,fix.mu=fix.mu,fixed.mu=fixed.mu,prev.result=result,use.constraints=use.constraints)
             }
          }

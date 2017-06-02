@@ -1,8 +1,8 @@
 get.range.EXPLN <-
 function(method,prev.result,dataset,n,TY,fix.mu,fixed.mu) {
 # This function determines a parameter range in which it seems meaningful to search for
-# a maximum of the log likelihood function, based on previous evaluations of the 
-# log likelihood. The return value is a two-columnmatrix, where each row correspond to one 
+# a maximum of the log likelihood function, based on previous evaluations of the
+# log likelihood. The return value is a two-columnmatrix, where each row correspond to one
 # parameter; the first columns contains the lower bounds, the second column the upper bounds.
 #
 # The method can be
@@ -14,26 +14,26 @@ function(method,prev.result,dataset,n,TY,fix.mu,fixed.mu) {
 # - "top20": min and max of the top20 results
 # - "quant": empirical 20% and 80% quantiles of all entries in prev.result
 # - "mlci": approximate marginal 95% likelihood confidence intervals
-        
+
    # definition of variables (necessary for CMD R check)
-   # (these variables will be initialized later, but they are not visible as global functions/data)        
+   # (these variables will be initialized later, but they are not visible as global functions/data)
    stochprof.results <- NULL
-   calculate.ci <- NULL        
+   calculate.ci <- NULL
    rm(stochprof.results)
    rm(calculate.ci)
-      
-        
+
+
    # trivial cases
    if ((method=="none") || (is.null(prev.result))) {
       return(NULL)
    }
    if (!is.matrix(prev.result)) {
       prev.result <- as.matrix(prev.result,nrow=1)
-   }   
+   }
    if (nrow(prev.result)==0) {
       return(NULL)
    }
-      
+
    # number of genes
    if (TY==1) {
       m <- ncol(prev.result) - 1
@@ -41,20 +41,20 @@ function(method,prev.result,dataset,n,TY,fix.mu,fixed.mu) {
    else {
       m <- (ncol(prev.result)-1)/TY - 1
    }
-   
+
    # results so far
    res <- stochprof.results(prev.result=prev.result,TY=TY,show.plots=F)
    if (is.null(res)) {
       return(NULL)
    }
 
-   # best result so far   
+   # best result so far
    best <- res[1,-ncol(res),drop=F]
-      
+
    ###################################
    # parameter ranges to be searched #
    ###################################
-      
+
    if (method=="best") {
       # very best result; lower bound = upper bound
       ranges <- cbind(t(best),t(best))
@@ -79,34 +79,35 @@ function(method,prev.result,dataset,n,TY,fix.mu,fixed.mu) {
          lower.pos <- min(length(this.par),round(1,0.2 * length(this.par)+1))
          upper.pos <- max(1,round(0.8 * length(this.par)-1))
          lower[i] <- this.par[lower.pos]
-         upper[i] <- this.par[upper.pos]   
+         upper[i] <- this.par[upper.pos]
       }
       ranges <- cbind(lower,upper)
    }
    else if (method=="mlci") {
+#change in calculate.ci
       ranges <- calculate.ci(alpha=0.05,parameter=best,dataset=dataset,n=n,TY=TY,fix.mu=fix.mu,fixed.mu=fixed.mu)
       return(ranges)
    }
-   
+
    ########################################
    # make sure the ranges above are valid #
    ########################################
-      
+
    if (method!="best") {
       if (TY>1) {
-         # p         
+         # p
          ranges[1:(TY-1),1] <- pmax(0,ranges[1:(TY-1),1])
          ranges[1:(TY-1),2] <- pmin(1,ranges[1:(TY-1),2])
-         
+
          # sigma and lambda
          ranges[(m+1)*(TY-1)+1+(0:m),1] <- pmax(ranges[(m+1)*(TY-1)+1+(0:m),1],0.01)
-         ranges[(m+1)*(TY-1)+1+(0:m),2] <- pmax(ranges[(m+1)*(TY-1)+1+(0:m),2],ranges[(m+1)*(TY-1)+1+(0:m),1]+0.05)         
+         ranges[(m+1)*(TY-1)+1+(0:m),2] <- pmax(ranges[(m+1)*(TY-1)+1+(0:m),2],ranges[(m+1)*(TY-1)+1+(0:m),1]+0.05)
       }
       else {
          ranges[,1] <- pmax(ranges[,1],0.01)
-         ranges[,2] <- pmax(ranges[,2],ranges[,1]+0.05)      
+         ranges[,2] <- pmax(ranges[,2],ranges[,1]+0.05)
       }
    }
-   
+
    return(ranges)
 }

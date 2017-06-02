@@ -385,7 +385,7 @@ function() {
                  this.text <- "There are non-positive values. Please enter finite natural numbers.\n"
              }
              else {
-                 if (length(n) != 1 && length(n)!=ncol(dataset)) {
+                 if (length(n) != 1 && length(n)!=nrow(dataset)) {
                     this.text <- "The number of samples does not agree with the number of\nsamples of the data. Please try again.\n"
                  }
                  else {
