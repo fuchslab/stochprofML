@@ -356,24 +356,46 @@ function() {
    # choose n
 
    ###Änderungen Lisa n als vektor!
+
    cat("---------\n")
    continue <- F
-   this.text <- paste("Please enter the number of cells that entered each sample:\n(default: ",n.default,")\n",sep="")
+   this.text <- paste("Please enter the number of cells that entered each sample:\nEither one number for all samples, or a seperate number for each sample separated by either commas or spaces,\ne.g. in case of five samples\n5, 10, 2, 10, 5\n or\n5 10 2 10 5.\n(default: ",n.default,")\n",sep="")
    while (!continue) {
       n <- readline(this.text)
       if (n=="") { n <- n.default }
-      if (is.na(as.numeric(n))) {
-         this.text <- "Invalid choice. Please enter a finite natural number.\n"
-      }
-      else {
-         n <- as.numeric(n)
-         if ((round(n)==n) && ((n>0) && (n<Inf))) {
-            continue <- T
+
+      else{
+         # try comma separation
+         n.tmp <- suppressWarnings(as.numeric(unlist(strsplit(n, ","))))
+         # try space separation
+         if (any(is.na(n.tmp))) {
+            n <- suppressWarnings(as.numeric(unlist(strsplit(n, " "))))
          }
          else {
-            this.text <- "Invalid choice. Please enter a finite natural number.\n"
+            n <- n.tmp
          }
+         if (any(is.na(n))) {
+            this.text <- "Invalid choice. Please enter a finite natural numbers. Please try again.\n"
+         }
+         else {
+             if (any(abs(n)==Inf)) {
+                 this.text <- "There are infinite values. Please enter finite natural numbers.\n"
+             }
+             else if (any(n<=0)) {
+                 this.text <- "There are non-positive values. Please enter finite natural numbers.\n"
+             }
+             else {
+                 if (length(n) != 1 && length(n)!=ncol(dataset)) {
+                    this.text <- "The number of samples does not agree with the number of\nsamples of the data. Please try again.\n"
+                 }
+                 else {
+                    continue <- T
+                 }
+             }
+         }
+
       }
+
    }
 
    #Änderungen Lisa Fertig
