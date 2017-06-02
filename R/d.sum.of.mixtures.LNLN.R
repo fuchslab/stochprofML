@@ -32,7 +32,7 @@ function(y,n,p.vector,mu.vector,sigma.vector,logdens=T) {
    if ((length(p.vector)!=length(mu.vector)) || (length(p.vector)!=length(sigma.vector))) {
       stop("d.sum.of.mixtures: p and mu and/or sigma are of different lengths.")
    }
-
+   if(is.null(dim(y))) {y <- matrix(y, ncol =1)}
    # all possible combinations for how many of the n random variables are of which type
    this.sum <- 0
    for(k in sort(unique(n))){

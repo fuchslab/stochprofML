@@ -107,7 +107,7 @@ function(dataset,n,TY,method="grid",M=10,par.range=NULL,prev.result=NULL,fix.mu=
       # consider negative log likelihood because the target function will be minimized
       this.sum <- 0
       for (g in 1:m) {
-         this.sum <- this.sum - loglikeli(dataset[,g],p,mu.matrix[g,,drop=T],sigma)
+         this.sum <- this.sum - loglikeli(dataset[,g, drop=F],p,mu.matrix[g,,drop=T],sigma)
       }
       return(this.sum)
    }

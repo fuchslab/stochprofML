@@ -33,6 +33,7 @@ function(y,n,p.vector,mu.vector,sigma.vector,logdens=T) {
       stop("d.sum.of.mixtures: p and mu and/or sigma are of different lengths.")
    }
 
+   if(is.null(dim(y))) {y <- matrix(y, ncol =1)}
    this.sum <- 0
    for(k in sort(unique(n))){
        index <- which(n == k)
@@ -44,7 +45,7 @@ function(y,n,p.vector,mu.vector,sigma.vector,logdens=T) {
        for (i in 1:nrow(j.combis))  {
             this.j <- j.combis[i,]
             weight <- dmultinom(x=this.j,prob=p.vector,log=F)
-            mixture.density <- d.sum.of.types(y[index,],this.j,mu.vector,sigma.vector,logdens=F)
+            mixture.density <- d.sum.of.types(y[index, ],this.j,mu.vector,sigma.vector,logdens=F)
             this.sum <- this.sum + weight * mixture.density
 
        }

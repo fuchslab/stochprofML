@@ -40,7 +40,7 @@ function(y,n,p.vector,mu.vector,sigma.vector,lambda,logdens=T) {
    if (length(lambda)!=1) {
       stop("d.sum.of.mixtures: lambda is not a scalar.")
    }
-
+if(is.null(dim(y))) {y <- matrix(y, ncol =1)}
    TY <- length(p.vector)
 
    this.sum <- 0

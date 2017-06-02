@@ -355,7 +355,6 @@ function() {
 
    # choose n
 
-   ###Änderungen Lisa n als vektor!
 
    cat("---------\n")
    continue <- F
@@ -398,7 +397,6 @@ function() {
 
    }
 
-   #Änderungen Lisa Fertig
 
    ############
    # settings #
