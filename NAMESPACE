@@ -1,0 +1,13 @@
+exportPattern(stochprof.search.LNLN,stochprof.search.rLNLN,stochprof.search.EXPLN,
+              stochprof.results.LNLN,stochprof.results.rLNLN,stochprof.results.EXPLN,
+              stochprof.loop,
+              calculate.ci.LNLN,calculate.ci.rLNLN,calculate.ci.EXPLN,
+              r.sum.of.mixtures.LNLN,r.sum.of.mixtures.rLNLN,r.sum.of.mixtures.EXPLN,
+              d.sum.of.mixtures.LNLN,d.sum.of.mixtures.rLNLN,d.sum.of.mixtures.EXPLN,
+              penalty.constraint.LNLN,penalty.constraint.rLNLN,penalty.constraint.EXPLN,
+              analyze.toycluster,
+              analyze.sod2,
+              generate.toydata,
+              stochasticProfilingData,stochasticProfilingML)
+importFrom(numDeriv, hessian)              
+importFrom(MASS, ginv)              
