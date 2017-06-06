@@ -33,7 +33,11 @@ function(y,n,p.vector,mu.vector,sigma.vector,logdens=T) {
       stop("d.sum.of.mixtures: p and mu and/or sigma are of different lengths.")
    }
    if(is.null(dim(y))) {y <- matrix(y, ncol =1)}
-   # all possible combinations for how many of the n random variables are of which type
+
+   if(length(n) != 1 && length(n) != dim(y)[1])
+       stop("d.sum.of.mixtures: n has to be either a finite natural number or vector, having the same length as the sample size.")
+
+    # all possible combinations for how many of the n random variables are of which type
    this.sum <- 0
    for(k in sort(unique(n))){
        index <- which(n == k)

@@ -34,6 +34,11 @@ function(y,n,p.vector,mu.vector,sigma.vector,logdens=T) {
    }
 
    if(is.null(dim(y))) {y <- matrix(y, ncol =1)}
+
+
+   if(length(n) != 1 && length(n) != dim(y)[1])
+       stop("d.sum.of.mixtures: n has to be either a finite natural number or vector, having the same length as the sample size.")
+
    this.sum <- 0
    for(k in sort(unique(n))){
        index <- which(n == k)

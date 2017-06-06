@@ -40,8 +40,14 @@ function(y,n,p.vector,mu.vector,sigma.vector,lambda,logdens=T) {
    if (length(lambda)!=1) {
       stop("d.sum.of.mixtures: lambda is not a scalar.")
    }
-if(is.null(dim(y))) {y <- matrix(y, ncol =1)}
-   TY <- length(p.vector)
+
+
+    if(length(n) != 1 && length(n) != dim(y)[1])
+        stop("d.sum.of.mixtures: n has to be either a finite natural number or vector, having the same length as the sample size.")
+
+    if(is.null(dim(y))) {y <- matrix(y, ncol =1)}
+
+    TY <- length(p.vector)
 
    this.sum <- 0
    for(k in sort(unique(n))){
