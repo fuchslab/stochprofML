@@ -65,7 +65,7 @@ function() {
             add.text <- paste("\nFor gene number ",g,":\n",sep="")
          }
          if (g==1) {
-            this.text <- paste("Please enter your measurements, separated by either commas or spaces,\ne.g. in case of five samples\n100.3, 150.7, 110.0, 80.2, 201.9\n or\n100.3 150.7 110.0 80.2 201.9.\n",add.text,sep="")
+            this.text <- paste("Please enter your measurements, separated by either commas or spaces,\ne.g. in case of five observations\n100.3, 150.7, 110.0, 80.2, 201.9\n or\n100.3 150.7 110.0 80.2 201.9.\n",add.text,sep="")
          }
          else {
             this.text <- add.text
@@ -107,7 +107,7 @@ function() {
                      }
                      else {
                         if (length(this.data)!=nrow(dataset)) {
-                           this.text <- "The number of samples for this gene does not agree with the number of\nsamples for the previous genes. Please try again.\n"
+                           this.text <- "The number of observations for this gene does not agree with the number of\nobservations for the previous genes. Please try again.\n"
                         }
                         else {
                            dataset[,g] <- this.data
@@ -127,7 +127,7 @@ function() {
       # choose filename
       cat("---------\n")
       continue <- F
-      cat("The file should contain a data matrix with one dimension standing for genes\nand the other one for samples. Fields have to be separated by tabs or white\nspaces, but not by commas. If necessary, please delete the commas in the\ntext file using the \'replace all\' function of your text editor.\n")
+      cat("The file should contain a data matrix with one dimension standing for genes\nand the other one for observations. Fields have to be separated by tabs or white\nspaces, but not by commas. If necessary, please delete the commas in the\ntext file using the \'replace all\' function of your text editor.\n")
       cat("\nPlease enter a valid path and filename, either a full path, e.g.\n",getwd(),"/mydata.txt\nor just a file name, e.g.\nmydata.txt.\nThe current directory is\n",getwd(),".\n",sep="")
       this.text <- ""
 
@@ -167,7 +167,7 @@ function() {
       }
 
       continue <- F
-      this.text <- "Do the columns stand for different genes or different samples?\n 1: genes\n 2: samples.\n"
+      this.text <- "Do the columns stand for different genes or different observations?\n 1: genes\n 2: observations.\n"
       while (!continue) {
          dims <- readline(this.text)
          if ((dims=="") || (!(dims %in% 1:2))) {
@@ -193,7 +193,7 @@ function() {
    if (manually==3) {
       cat("---------\n")
       continue <- F
-      this.text <- "The variable should be a matrix with one dimension standing for genes\nand the other one for samples. Please enter the name of the variable.\n"
+      this.text <- "The variable should be a matrix with one dimension standing for genes\nand the other one for observations. Please enter the name of the variable.\n"
       while (!continue) {
          variablename <- readline(this.text)
          variable <- try(eval(parse(text=variablename)),silent=T)
@@ -215,7 +215,7 @@ function() {
       }
 
       continue <- F
-      this.text <- "Do the columns stand for different genes or different samples?\n 1: genes\n 2: samples.\n"
+      this.text <- "Do the columns stand for different genes or different observations?\n 1: genes\n 2: observations.\n"
       while (!continue) {
          dims <- readline(this.text)
          if ((dims=="") || (!(dims %in% 1:2))) {
@@ -355,48 +355,300 @@ function() {
 
    # choose n
 
-
    cat("---------\n")
    continue <- F
-   this.text <- paste("Please enter the number of cells that entered each sample:\nEither one number for all samples, or a seperate number for each sample separated by either commas or spaces,\ne.g. in case of five samples\n5, 10, 2, 10, 5\n or\n5 10 2 10 5.\n(default: ",n.default,")\n",sep="")
+   this.text <- "Please enter the number of cells that entered each observation, either\n 1: all observations contain the same number of cells, or \n 2: each observation contains a different number of cells \n(default: 1).\n"
    while (!continue) {
-      n <- readline(this.text)
-      if (n=="") { n <- n.default }
-
-      else{
-         # try comma separation
-         n.tmp <- suppressWarnings(as.numeric(unlist(strsplit(n, ","))))
-         # try space separation
-         if (any(is.na(n.tmp))) {
-            n <- suppressWarnings(as.numeric(unlist(strsplit(n, " "))))
-         }
-         else {
-            n <- n.tmp
-         }
-         if (any(is.na(n))) {
-            this.text <- "Invalid choice. Please enter a finite natural numbers. Please try again.\n"
-         }
-         else {
-             if (any(abs(n)==Inf)) {
-                 this.text <- "There are infinite values. Please enter finite natural numbers.\n"
-             }
-             else if (any(n<=0)) {
-                 this.text <- "There are non-positive values. Please enter finite natural numbers.\n"
-             }
-             else {
-                 if (length(n) != 1 && length(n)!=nrow(dataset)) {
-                    this.text <- "The number of samples does not agree with the number of\nsamples of the data. Please try again.\n"
-                 }
-                 else {
-                    continue <- T
-                 }
-             }
-         }
-
-      }
-
+       number <- readline(this.text)
+       if (number=="") {
+           number <- 1
+           continue = T
+       }
+       if (number %in% 1:2) {
+           continue = T
+       }
+       else {
+           this.text <- "Invalid choice. Please try again.\n"
+       }
    }
 
+   if(number == 2){
+       cat("---------\n")
+       continue <- F
+       this.text <- "How would you like to input the number of cells for each observation?\n 1: enter manually\n 2: read from file\n 3: enter the name of a variable\n(default: 1).\n"
+       while (!continue) {
+           input_n <- readline(this.text)
+           if (input_n=="") {
+               input_n <- 1
+           }
+           if (input_n %in% 1:3) {
+               continue <- T
+           }
+           else {
+               this.text <- "Invalid choice. Please try again.\n"
+           }
+       }
+       if(input_n == 1){
+           cat("---------\n")
+           continue <- F
+           this.text <- paste("Please enter the number of cells that should enter each observation:\nseparated by either commas or spaces,\ne.g. in case of five observations\n5, 10, 2, 10, 5\n or\n5 10 2 10 5.\n(default: ",n.default,")\n",sep="")
+
+           while (!continue) {
+               n <- readline(this.text)
+               if (n=="") { n <- n.default }
+
+               else{
+                   # try comma separation
+                   n.tmp <- suppressWarnings(as.numeric(unlist(strsplit(n, ","))))
+                   # try space separation
+                   if (any(is.na(n.tmp))) {
+                       n <- suppressWarnings(as.numeric(unlist(strsplit(n, " "))))
+                   }
+                   else {
+                       n <- n.tmp
+                   }
+                   if (any(is.na(n)) || (round(n)!=n)) {
+                       this.text <- "Invalid choice. Please enter only finite natural numbers. Please try again.\n"
+                   }
+                   else {
+                       if (any(abs(n)==Inf)) {
+                           this.text <- "There are a infinite values. Please enter only finite natural numbers.\n"
+                       }
+                       else if (any(n<=0)) {
+                           this.text <- "There are non-positive values. Please enter only finite natural numbers.\n"
+                       }
+                       else {
+                           if (length(n) != 1 && length(n)!=nrow(dataset)) {
+                               this.text <- "The length of n does not agree with the number of\nobservations in the data. Please try again.\n"
+                           }
+                           else {
+                               continue <- T
+                           }
+                       }
+                   }
+               }
+           }
+
+
+       } else if (input_n == 2){
+           # choose filename
+           cat("---------\n")
+           continue_alg <- F
+
+           while(!continue_alg){
+               continue <- F
+               cat("The file should contain a data matrix with a one dimensional vector standing for the observations. Fields have to be separated by tabs or white\nspaces, but not by commas. If necessary, please delete the commas in the\ntext file using the \'replace all\' function of your text editor.\n")
+
+               cat("\nPlease enter a valid path and filename, either a full path, e.g.\n",getwd(),"/mydata.txt\nor just a file name, e.g.\nmydata.txt.\nThe current directory is\n",getwd(),".\n",sep="")
+               this.text <- ""
+
+
+               while (!continue) {
+                   path <- readline(this.text)
+
+                   if (!file.exists(path)) {
+                       this.text <- "This file does not exist. Please try again.\n"
+                   }
+                   else {
+                       continue <- T
+                   }
+               }
+
+               continue <- F
+               this.text <- "Does the file contains a column name? Please enter 'yes' or 'no'.\n"
+               while (!continue) {
+                   cnames <- readline(this.text)
+                   if ((cnames=="") || (!(cnames %in% c("yes","no")))) {
+                       this.text <- "Please enter 'yes' or 'no'.\n"
+                   }
+                   else {
+                       continue <- T
+                   }
+               }
+
+               continue <- F
+               this.text <- "Does the file contain row names? Please enter 'yes' or 'no'.\n"
+               while (!continue) {
+                   rnames <- readline(this.text)
+                   if ((rnames=="") || (!(rnames %in% c("yes","no")))) {
+                       this.text <- "Please enter 'yes' or 'no'.\n"
+                   }
+                   else {
+                       continue <- T
+                   }
+               }
+
+               continue <- F
+               this.text <- "Do the rows or the columns stand for the different observations?\n 1: rows\n 2: columns.\n"
+               while (!continue) {
+                   dimn <- readline(this.text)
+                   if ((dimn=="") || (!(dimn %in% 1:2))) {
+                       this.text <- "Invalid choice. Please try again.\n"
+                   }
+                   else {
+                       continue <- T
+                   }
+               }
+
+               # read file
+
+               if (rnames=="yes") {
+                   n <- read.table(file=path,header=(cnames=="yes"),row.names=1)
+               }
+               else {
+                   n <- read.table(file=path,header=(cnames=="yes"))
+               }
+               if (dimn==2) {
+                   n <- t(n)
+               }
+
+
+               if (any(is.na(n)) || any(round(n)!=n)) {
+                   cat("Invalid choice. Please enter finite natural numbers. Please try again.\n\n\n")
+               } else {
+                   if (any(abs(n)==Inf)) {
+                       cat("There are infinite values. Please enter only finite natural numbers.\n\n\n")
+                   }
+                   else if (any(n<=0)) {
+                       cat("There are non-positive values. Please enter only finite natural numbers.\n\n\n")
+                   }
+                   else {
+                       if (length(n) != 1 && length(n)!=nrow(k)) {
+                           cat("The number of observations does not agree with the number of\nobservations of the data. Please try again.\n\n\n")
+                       }
+                       else {
+                           continue_alg <- T
+                       }
+                   }
+               }
+           }
+
+
+
+       } else
+           if(input_n == 3){
+               cat("---------\n")
+               continue_alg <- F
+
+               while(!continue_alg){
+                   continue <- F
+
+                   this.text <- "The variable should be a matrix with one dimension standing for the observations. Please enter the name of the variable.\n"
+                   while (!continue) {
+                       n_variablename <- readline(this.text)
+                       n_variable <- try(eval(parse(text=n_variablename)),silent=T)
+
+                       if (class(n_variable)=="try-error") {
+                           this.text <- "This variable does not exist. Please try again.\n"
+                       }
+                       else {
+                           continue <- T
+                           if (is.data.frame(n_variable)) {
+                               cat("Data frame has been converted to matrix.\n")
+                               n_variable <- as.matrix(n_variable)
+                           }
+                           if (!is.matrix(n_variable)) {
+                               cat(paste("This is not a matrix. The variable is converted to a matrix with 1 column\nand ",length(n_variable)," rows.\n\n",sep=""))
+                               n_variable <- matrix(n_variable,ncol=1)
+                           }
+                       }
+                   }
+
+                   continue <- F
+                   this.text <- "Do the rows or the columns stand for the different observations?\n 1: rows\n 2: columns.\n"
+                   while (!continue) {
+                       dimn <- readline(this.text)
+                       if ((dimn=="") || (!(dimn %in% 1:2))) {
+                           this.text <- "Invalid choice. Please try again.\n"
+                       }
+                       else {
+                           continue <- T
+                           if (dimn==1) {
+                               n <- n_variable
+                           }
+                           else {
+                               n<- t(n_variable)
+                           }
+                       }
+                   }
+                   if (is.null(colnames(n))) {
+                       n_cnames <- "no"
+                   }
+                   else {
+                       n_cnames <- "yes"
+                   }
+                   n_rnames <- "no"
+
+
+                   if (any(is.na(n)) || any(round(n)!=n)) {
+                       cat("Invalid choice. Please enter finite natural numbers. Please try again.\n\n\n")
+                   } else {
+                       if (any(abs(n)==Inf)) {
+                           cat("There are infinite values. Please enter only finite natural numbers.\n\n\n")
+                       }
+                       else if (any(n<=0)) {
+                           cat("There are non-positive values. Please enter only finite natural numbers.\n\n\n")
+                       }
+                       else {
+                           if (length(n) != 1 && length(n)!=k) {
+                               cat("The number of observations does not agree with the number of\nobservations of the data. Please try again.\n\n\n")
+                           }
+                           else {
+                               continue_alg <- T
+                           }
+                       }
+                   }
+
+
+               }
+
+           }
+   }
+
+
+   if(number == 1){
+       cat("---------\n")
+       continue <- F
+       this.text <- paste("Please enter the number of cells that should enter each observation:\n(default: ",n.default,")\n",sep="")
+
+       while (!continue) {
+           n <- readline(this.text)
+           if (n=="") { n <- n.default }
+
+           else{
+               # try comma separation
+               n.tmp <- suppressWarnings(as.numeric(unlist(strsplit(n, ","))))
+               # try space separation
+               if (any(is.na(n.tmp))) {
+                   n <- suppressWarnings(as.numeric(unlist(strsplit(n, " "))))
+               }
+               else {
+                   n <- n.tmp
+               }
+               if (any(is.na(n))) {
+                   this.text <- "Invalid choice. Please enter a finite natural number. Please try again.\n"
+               }
+               else {
+                   if (any(abs(n)==Inf)) {
+                       this.text <- "There is a infinite value. Please enter a finite natural number.\n"
+                   }
+                   else if (any(n<=0)) {
+                       this.text <- "There is a non-positive value. Please enter a finite natural number.\n"
+                   }
+                   else {
+                       if (length(n) != 1) {
+                           this.text <- "Invalid choice. Please enter a finite natural number. Please try again.\n"
+                       }
+                       else {
+                           continue <- T
+                       }
+                   }
+               }
+
+           }
+
+       }
+   }
 
    ############
    # settings #

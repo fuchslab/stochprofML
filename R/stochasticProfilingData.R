@@ -56,7 +56,7 @@ function() {
    # choose k
    cat("---------\n")
    continue <- F
-   this.text <- paste("Please enter the number of stochastic profiling samples you wish to generate:\n(default: ",k.default,")\n",sep="")
+   this.text <- paste("Please enter the number of stochastic profiling observations you wish to generate:\n(default: ",k.default,")\n",sep="")
    while (!continue) {
       k <- readline(this.text)
       if (k=="") { k <- k.default }
@@ -77,7 +77,7 @@ function() {
    # choose n
    cat("---------\n")
    continue <- F
-   this.text <- "Next we enter the number of cells that should enter each sample, which case do you want:\n 1: all samples should contain the same number of cells, or \n 2: each sample contains a different number of cells \n(default: 1).\n"
+   this.text <- "Next we enter the number of cells that should enter each observation, which case do you want:\n 1: all observations should contain the same number of cells, or \n 2: each observation contains a different number of cells \n(default: 1).\n"
    while (!continue) {
        number <- readline(this.text)
        if (number=="") {
@@ -95,7 +95,7 @@ function() {
    if(number == 2){
    cat("---------\n")
    continue <- F
-   this.text <- "How would you like to input the number of cells for each sample?\n 1: enter manually\n 2: read from file\n 3: enter the name of a variable\n(default: 1).\n"
+   this.text <- "How would you like to input the number of cells for each observation?\n 1: enter manually\n 2: read from file\n 3: enter the name of a variable\n(default: 1).\n"
    while (!continue) {
        input_n <- readline(this.text)
        if (input_n=="") {
@@ -111,7 +111,7 @@ function() {
    if(input_n == 1){
        cat("---------\n")
        continue <- F
-       this.text <- paste("Please enter the number of cells that should enter each sample:\nseparated by either commas or spaces,\ne.g. in case of five samples\n5, 10, 2, 10, 5\n or\n5 10 2 10 5.\n(default: ",n.default,")\n",sep="")
+       this.text <- paste("Please enter the number of cells that should enter each observation:\nseparated by either commas or spaces,\ne.g. in case of five observations\n5, 10, 2, 10, 5\n or\n5 10 2 10 5.\n(default: ",n.default,")\n",sep="")
 
        while (!continue) {
            n <- readline(this.text)
@@ -139,7 +139,7 @@ function() {
                    }
                    else {
                        if (length(n) != 1 && length(n)!=nrow(dataset)) {
-                           this.text <- "The length of n does not agree with the number of\nsamples in the data. Please try again.\n"
+                           this.text <- "The length of n does not agree with the number of\nobservations in the data. Please try again.\n"
                        }
                        else {
                            continue <- T
@@ -157,7 +157,7 @@ function() {
 
        while(!continue_alg){
        continue <- F
-       cat("The file should contain a data matrix with a one dimensional vector standing for the samples. Fields have to be separated by tabs or white\nspaces, but not by commas. If necessary, please delete the commas in the\ntext file using the \'replace all\' function of your text editor.\n")
+       cat("The file should contain a data matrix with a one dimensional vector standing for the observations. Fields have to be separated by tabs or white\nspaces, but not by commas. If necessary, please delete the commas in the\ntext file using the \'replace all\' function of your text editor.\n")
 
        cat("\nPlease enter a valid path and filename, either a full path, e.g.\n",getwd(),"/mydata.txt\nor just a file name, e.g.\nmydata.txt.\nThe current directory is\n",getwd(),".\n",sep="")
        this.text <- ""
@@ -199,7 +199,7 @@ function() {
        }
 
        continue <- F
-       this.text <- "Do the rows or the columns stand for the different samples?\n 1: rows\n 2: columns.\n"
+       this.text <- "Do the rows or the columns stand for the different observations?\n 1: rows\n 2: columns.\n"
        while (!continue) {
            dimn <- readline(this.text)
            if ((dimn=="") || (!(dimn %in% 1:2))) {
@@ -234,7 +234,7 @@ function() {
                }
            else {
                if (length(n) != 1 && length(n)!=nrow(k)) {
-                   cat("Invalid choice. Please enter only finite natural numbers. Please try again.\n\n\n")
+                   cat("The number of observations does not agree with the number of\nobservations of the data. Please try again.\n\n\n")
                 }
                else {
                    continue_alg <- T
@@ -253,7 +253,7 @@ function() {
        while(!continue_alg){
        continue <- F
 
-       this.text <- "The variable should be a matrix with one dimension standing for the samples. Please enter the name of the variable.\n"
+       this.text <- "The variable should be a matrix with one dimension standing for the observations. Please enter the name of the variable.\n"
        while (!continue) {
            n_variablename <- readline(this.text)
            n_variable <- try(eval(parse(text=n_variablename)),silent=T)
@@ -275,7 +275,7 @@ function() {
        }
 
        continue <- F
-       this.text <- "Do the rows or the columns stand for the different samples?\n 1: rows\n 2: columns.\n"
+       this.text <- "Do the rows or the columns stand for the different observations?\n 1: rows\n 2: columns.\n"
        while (!continue) {
            dimn <- readline(this.text)
            if ((dimn=="") || (!(dimn %in% 1:2))) {
@@ -311,7 +311,7 @@ function() {
            }
            else {
                if (length(n) != 1 && length(n)!=k) {
-                   cat("Invalid choice. Please enter only finite natural numbers. Please try again.\n\n\n")
+                   cat("The number of observations does not agree with the number of\nobservations of the data. Please try again.\n\n\n")
                }
                else {
                    continue_alg <- T
@@ -730,13 +730,13 @@ function() {
         }
    }
    colnames(dataset) <- paste("gene",1:m)
-   rownames(dataset) <- paste("sample",1:k)
+   rownames(dataset) <- paste("observation",1:k)
 
    par(ask=F)
 
    # Print result.
    if (k>50) {
-      cat("\n\nThe dataset has been generated. The first 50 samples are:\n\n")
+      cat("\n\nThe dataset has been generated. The first 50 observations are:\n\n")
    }
    else {
       cat("\n\nThe dataset has been generated:\n\n")
