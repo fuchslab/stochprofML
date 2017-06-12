@@ -38,7 +38,7 @@ function(y,n,p.vector,mu.vector,sigma.vector,logdens=T) {
        stop("d.sum.of.mixtures: n has to be either a finite natural number or vector, having the same length as the sample size.")
     }
     # all possible combinations for how many of the n random variables are of which type
-   this.sum <- 0
+   this.sum <- rep(0, dim(y)[1])
 
    if(length(n) == 1){
        n <- rep(n,dim(y)[1])
@@ -57,7 +57,7 @@ function(y,n,p.vector,mu.vector,sigma.vector,logdens=T) {
           this.j <- j.combis[i,]
           weight <- dmultinom(x=this.j,prob=p.vector,log=F)
           mixture.density <- d.sum.of.types(y[index,],this.j,mu.vector,sigma.vector,logdens=F)
-          this.sum <- this.sum + weight * mixture.density
+          this.sum[index] <- this.sum[index] + weight * mixture.density
        }
    }
 
