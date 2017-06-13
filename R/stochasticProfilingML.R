@@ -513,7 +513,7 @@ function() {
                        cat("There are non-positive values. Please enter only finite natural numbers.\n\n\n")
                    }
                    else {
-                       if (length(n) != 1 && length(n)!=nrow(k)) {
+                       if (length(n) != 1 && length(n)!=nrow(dataset)) {
                            cat("The number of observations does not agree with the number of\nobservations of the data. Please try again.\n\n\n")
                        }
                        else {
@@ -590,7 +590,7 @@ function() {
                            cat("There are non-positive values. Please enter only finite natural numbers.\n\n\n")
                        }
                        else {
-                           if (length(n) != 1 && length(n)!=k) {
+                           if (length(n) != 1 && length(n)!=nrow(dataset)) {
                                cat("The number of observations does not agree with the number of\nobservations of the data. Please try again.\n\n\n")
                            }
                            else {
