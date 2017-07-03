@@ -36,30 +36,47 @@ function(y,n,p.vector,mu.vector,sigma.vector,logdens=T) {
 
    if(length(n) != 1 && length(n) != dim(y)[1]){
        stop("d.sum.of.mixtures: n has to be either a finite natural number or vector, having the same length as the sample size.")
-    }
-    # all possible combinations for how many of the n random variables are of which type
-   this.sum <- rep(0, dim(y)[1])
-
-   if(length(n) == 1){
-       n <- rep(n,dim(y)[1])
    }
-   for(k in sort(unique(n))){
-       index <- which(n == k)
 
+   #if n is the same in all samples calculate as in previous stochasticML versions
+   if(sum(n == n[1]) == length(n)){
+      n <- n[1]
+      j.combis <- comb.summands(n,length(p.vector))
 
-   # all possible combinations for how many of the n random variables are of which type
-       j.combis <- comb.summands(k,length(p.vector))
-
-
-   # sum up over all these possibilities
-
-       for (i in 1:nrow(j.combis))  {
+      # sum up over all these possibilities
+      this.sum <- 0
+      for (i in 1:nrow(j.combis))  {
           this.j <- j.combis[i,]
           weight <- dmultinom(x=this.j,prob=p.vector,log=F)
-          mixture.density <- d.sum.of.types(y[index,],this.j,mu.vector,sigma.vector,logdens=F)
-          this.sum[index] <- this.sum[index] + weight * mixture.density
+          mixture.density <- d.sum.of.types(y,this.j,mu.vector,sigma.vector,logdens=F)
+          this.sum <- this.sum + weight * mixture.density
+      }
+   } else{
+       this.sum <- rep(0, dim(y)[1])
+       for(k in sort(unique(n))){
+           index <- which(n == k)
+
+
+           # all possible combinations for how many of the n random variables are of which type
+           j.combis <- comb.summands(k,length(p.vector))
+
+
+           # sum up over all these possibilities
+
+           for (i in 1:nrow(j.combis))  {
+               this.j <- j.combis[i,]
+               weight <- dmultinom(x=this.j,prob=p.vector,log=F)
+               mixture.density <- d.sum.of.types(y[index,],this.j,mu.vector,sigma.vector,logdens=F)
+               this.sum[index] <- this.sum[index] + weight * mixture.density
+           }
        }
+
    }
+   # all possible combinations for how many of the n random variables are of which type
+
+
+
+
 
    if (logdens) { log(this.sum) } else { this.sum }
 }
