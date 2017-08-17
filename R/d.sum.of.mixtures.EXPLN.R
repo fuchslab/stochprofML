@@ -42,15 +42,25 @@ function(y,n,p.vector,mu.vector,sigma.vector,lambda,logdens=T) {
    }
 
 
-    if(length(n) != 1 && length(n) != dim(y)[1]){
+    if(length(n) != 1 && length(n) != length(y)){
         stop("d.sum.of.mixtures: n has to be either a finite natural number or vector, having the same length as the sample size.")
     }
 
-    if(is.null(dim(y))) {y <- matrix(y, ncol =1)}
-
+    #if n is the same in all samples calculate as in previous stochasticML versions
+    if(sum(n == n[1]) == length(n)){
     TY <- length(p.vector)
-
-   this.sum <- 0
+    n <- n[1]
+    j.combis <- comb.summands(n, TY)
+    this.sum <- 0
+    for (i in 1:nrow(j.combis)) {
+        this.j <- j.combis[i, ]
+        weight <- dmultinom(x = this.j, prob = p.vector, log = F)
+        mixture.density <- lognormal.exp.convolution(y, this.j,
+                                                     mu.vector, sigma.vector, lambda, logdens = F)
+        this.sum <- this.sum + weight * mixture.density
+    }
+    }else{
+   this.sum <- rep(0, length(y))
    for(k in sort(unique(n))){
        index <- which(n == k)
 
@@ -62,10 +72,12 @@ function(y,n,p.vector,mu.vector,sigma.vector,lambda,logdens=T) {
        for (i in 1:nrow(j.combis))  {
             this.j <- j.combis[i,]
             weight <- dmultinom(x=this.j,prob=p.vector,log=F)
-            mixture.density <- lognormal.exp.convolution(y[index,],this.j,mu.vector,sigma.vector,lambda,logdens=F)
-            this.sum <- this.sum + weight * mixture.density
+            mixture.density <- lognormal.exp.convolution(y[index],this.j,mu.vector,sigma.vector,lambda,logdens=F)
+            this.sum[index] <- this.sum[index] + weight * mixture.density
        }
    }
+    }
+
 
    # sum up over all these possibilities
    if (logdens) { log(this.sum) } else { this.sum }
