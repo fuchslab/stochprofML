@@ -19,7 +19,7 @@ the argument at which the density is evaluated
 number of i.i.d. random variables returned by this function (in the considered application: number of tissue samples)
 }
   \item{n}{
-the number of random variables entering each sum (in the considered application: number of cells per tissue sample)
+the number of random variables entering each sum (in the considered application: number of cells per tissue sample). This can also be a vector stating how many cells are in each sample seperatly.
 }
   \item{p.vector}{
 vector (p1,p2,..,pT) containing the probabilities for each type of cell. Its elements have to sum up to one

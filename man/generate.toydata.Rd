@@ -20,7 +20,7 @@ This function first generates a dataset of 500 i.i.d. 10-cell samplings as consi
 \value{
 A list as returned by \code{stochprof.loop}, i.e. the following components:
 \item{mle}{maximum likelihood estimate}
-\item{loglikeli}{value of the log-likelihood function at maximum likelihood estimate}
+\item{neg-loglikeli}{value of the negative log-likelihood function at maximum likelihood estimate}
 \item{ci}{approximate marginal maximum likelihood confidence intervals for the maximum likelihood estimate}
 \item{pargrid}{matrix containing parameter combinations and according values of the target function}
 \item{bic}{Bayesian information criterion value}

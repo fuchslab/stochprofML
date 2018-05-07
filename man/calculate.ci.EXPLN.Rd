@@ -25,7 +25,7 @@ a list of previous results as returned by stochprof.results. This variable is on
 a matrix which contains the cumulated expression data over all cells in a tissue sample. Columns represent different genes, rows represent different tissue samples.
 }
   \item{n}{
-the number of cells taken from each tissue sample
+number of cells taken from each tissue sample. This can also be a vector stating how many cells are in each sample seperatly.
 }
   \item{TY}{
 the number of types of cells that is assumed in the stochastic model

@@ -1,13 +1,13 @@
-\name{mix.d.sum.of.mixtures.LNLN}
-\alias{mix.d.sum.of.mixtures.LNLN}
+\name{mix.d.sum.of.mixtures.rLNLN}
+\alias{mix.d.sum.of.mixtures.rLNLN}
 \title{
 Density of the sum of mixtures of lognormal random variables weighted by all possible summands
 }
 \description{
-Density of a random variable that is the sum of i.i.d. random variables, where each random variable is from the following mixture distribution: With probability p_i, it is of type i. In that case, it is lognormally distributed with log-mean mu_i and log-standard deviation sigma_i. The density is somehow a "mixed" one, as for all values in \code{n} the density of the random varibale is calculated and the weighted average is taken to be the density of this specific value.
+Density and random generation of a sum of i.i.d. random variables, where each random variable is from the following mixture distribution: With probability p_i, it is of type i. In that case, it is lognormally distributed with log-mean mu_i and log-standard deviation sigma_i.  The density is somehow a "mixed" one, as for all values in \code{n} the density of the random varibale is calculated and the weighted average is taken to be the density of this specific value.
 }
 \usage{
-mix.d.sum.of.mixtures.LNLN(y, n, p.vector, mu.vector, sigma.vector, logdens = T)
+d.sum.of.mixtures.rLNLN(y, n, p.vector, mu.vector, sigma.vector, logdens = T)
 }
 \arguments{
   \item{y}{

@@ -16,7 +16,7 @@ stochprof.search.EXPLN(dataset, n, TY, method = "grid", M = 10,
 matrix which contains the cumulated expression data over all cells in a tissue sample. Columns represent genes, rows represent tissue samples.
 }
   \item{n}{
-number of cells taken from each tissue sample
+number of cells taken from each tissue sample. This can also be a vector stating how many cells are in each sample seperatly
 }
   \item{TY}{
 number of types of cells that is assumed in the stochastic model

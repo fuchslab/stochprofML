@@ -254,6 +254,6 @@ function(model,dataset,n,TY,genenames=NULL,fix.mu=F,fixed.mu,par.range=NULL,prev
    cat("\n")
 
    final <- list(mle,loglikeli,ci,pargrid,bic,adj.bic,pen)
-   names(final) <- c("mle","loglikeli","ci","pargrid","bic","adj.bic","pen")
+   names(final) <- c("mle","neg-loglikeli","ci","pargrid","bic","adj.bic","pen")
    return(invisible(final))
 }
