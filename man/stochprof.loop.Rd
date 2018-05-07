@@ -4,12 +4,12 @@
 Maximum likelihood estimation for the parameters in the stochastic profiling model
 }
 \description{
-Maximum likelihood estimation for the parameters in the stochastic profiling model. Because the log-likelihood function is potentially multimodal, no straightforward use of gradient-based approaches for finding globally optimal parameter combinations is possible. To tackle this challenge, this function performs a two-step estimation procedure. 
+Maximum likelihood estimation for the parameters in the stochastic profiling model. Because the log-likelihood function is potentially multimodal, no straightforward use of gradient-based approaches for finding globally optimal parameter combinations is possible. To tackle this challenge, this function performs a two-step estimation procedure.
 }
 \usage{
-stochprof.loop(model, dataset, n, TY, genenames = NULL, fix.mu = F, 
-   fixed.mu, par.range = NULL, prev.result = NULL, loops = 5, 
-   until.convergence = T, print.output = T, show.plots = T, 
+stochprof.loop(model, dataset, n, TY, genenames = NULL, fix.mu = F,
+   fixed.mu, par.range = NULL, prev.result = NULL, loops = 5,
+   until.convergence = T, print.output = T, show.plots = T,
    plot.title = "", pdf.file, use.constraints = F, subgroups)
 }
 \arguments{
@@ -34,8 +34,8 @@ if TRUE, the log-means of the lognormal distributions are kept fixed in the esti
   \item{fixed.mu}{
 vector containing the values to which the log-means should be fixed if fix.mu==T. The order of components is as follows:
 
-(mu_type_1_gene_1, mu_type_1_gene_2, ..., 
- 
+(mu_type_1_gene_1, mu_type_1_gene_2, ...,
+
  mu_type_2_gene_1, mu_type_2_gene_2, ...).
 
 This argument needs to be specified only when fix.mu==T.
@@ -69,7 +69,7 @@ if TRUE, constraints on the individual population densities are applied; see \co
 }
   \item{subgroups}{
 list of sets of gene numbers. This parameter should be given only when the present call of \code{stochprof.loop} is based on a subanalysis of the subgroups of genes with non-fixed mu. The parameter is used only for calculation of the adjusted BIC which takes into account the number of parameters that had to be estimated during the whole estimation procedure: First, for each of the subclusters, and then for the final analysis.
-}  
+}
 }
 \details{
 This function carries out maximum likelihood estimation for the parameters of the stochastic profiling model. Because the log-likelihood function is potentially multimodal, no straightforward use of gradient-based approaches for finding globally optimal parameter combinations is possible. To tackle this challenge, this function performs a two-step estimation procedure: First, it computes the log-likelihood function at randomly drawn parameter combinations to identify high-likelihood regions in parameter space at computationally  low cost. Then, it uses the Nelder-Mead algorithm to identify local maxima of the likelihood function. The starting values for this algorithm are randomly drawn from the high-likelihood regions determined in the first step. To further localize the global optimum, the function again performs grid searches of the parameter space, this time around the optimum identified by the Nelder-Mead algorithm. This search creates another space to identify high-likelihood regions, which are then used to seed another Nelder-Mead optimization.
@@ -88,7 +88,9 @@ A list with the following components:
 "Parameterizing cell-to-cell regulatory heterogeneities via stochastic transcriptional profiles" by Sameer S Bajikar*, Christiane Fuchs*, Andreas Roller, Fabian J Theis^ and Kevin A Janes^: PNAS 2014, 111(5), E626-635 (* joint first authors, ^ joint last authors)
 }
 \author{
-Christiane Fuchs
+Lisa Amrhein, Christiane Fuchs
+
+Maintainer: Christiane Fuchs <christiane.fuchs@helmholtz-muenchen.de>
 }
 \keyword{ maximum likelihood estimation }
 \keyword{ stochastic profiling }

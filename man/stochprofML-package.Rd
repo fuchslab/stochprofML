@@ -12,8 +12,8 @@ This package accompanies the paper "Parameterizing cell-to-cell regulatory heter
 \tabular{ll}{
 Package: \tab stochprofML\cr
 Type: \tab Package\cr
-Version: \tab 1.2\cr
-Date: \tab 2014-10-17\cr
+Version: \tab 2.0\cr
+Date: \tab 2018-05-07\cr
 License: \tab GPL (>= 2)\cr
 }
 There are three stochastic profiling models: The lognormal-lognormal (LN-LN) model assumes that each cell is from a mixture of one or more lognormal distributions with different log-means but identical log-standard deviations. In the relaxed lognormal-lognormal (rLN-LN) model, the log-standard deviations are not necessarily identical. The exponential-lognormal (EXP-LN) model considers the mixture of zero, one or more lognormal distributions and one exponential distribution.
@@ -22,14 +22,16 @@ The user can immediately start with data generation and model estimation using t
 
 When not using one the above two functions, parameters can be estimated calling \code{stochprof.loop}, which again utilizes three other functions: \code{stochprof.search.LNLN}/ \code{stochprof.search.rLNLN}/ \code{stochprof.search.EXPLN} in order to calculate and locally optimize the likelihood function; \cr \code{stochprof.results.LNLN}/ \code{stochprof.results.rLNLN}/ \code{stochprof.results.EXPLN} for evaluating these results; and \code{calculate.ci.LNLN}/ \code{calculate.ci.rLNLN}/ \code{calculate.ci.EXPLN} for calculating confidence intervals.
 
-Two essential functions are \code{r.sum.of.mixtures.LNLN}/ \code{r.sum.of.mixtures.rLNLN}/ \cr \code{r.sum.of.mixtures.EXPLN} and \code{d.sum.of.mixtures.LNLN}/ \code{d.sum.of.mixtures.rLNLN}/ \cr \code{d.sum.of.mixtures.EXPLN} for the density and random number generation of the distribution assumed for all measurements in the stochastic profiling model. 
+Two essential functions are \code{r.sum.of.mixtures.LNLN}/ \code{r.sum.of.mixtures.rLNLN}/ \cr \code{r.sum.of.mixtures.EXPLN} and \code{d.sum.of.mixtures.LNLN}/ \code{d.sum.of.mixtures.rLNLN}/ \cr \code{d.sum.of.mixtures.EXPLN} for the density and random number generation of the distribution assumed for all measurements in the stochastic profiling model.
+
+Version 2.0 shows one significant extension to previous versions: The number of cells \code{n} in the input data does no longer need to be the same over all samples.
 
 The package provides four datasets: \code{sod2}, containing real measurements for one gene, and \cr \code{toycluster.LNLN}/ \code{toycluster.rLNLN}/ \code{toycluster.EXPLN}, containing artificial data for 12 genes generated with the three stochastic profiling models.
 
 Examples for typical analyses are given below.
 }
 \author{
-Christiane Fuchs
+Lisa Amrhein, Christiane Fuchs
 
 Maintainer: Christiane Fuchs <christiane.fuchs@helmholtz-muenchen.de>
 }
@@ -47,7 +49,7 @@ stochasticProfilingData()
 # and other parameters.
 stochasticProfilingML()
 
-# Generate a synthetic dataset (without measurement error) for one gene 
+# Generate a synthetic dataset (without measurement error) for one gene
 # and estimate the parameters from this data.
 generate.toydata()
 

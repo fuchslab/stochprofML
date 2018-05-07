@@ -8,7 +8,7 @@ Calculates approximate marginal maximum likelihood confidence intervals with
 significance level alpha for all parameters in the rLN-LN model.
 }
 \usage{
-calculate.ci.rLNLN(alpha, parameter, prev.result, dataset, n, TY, 
+calculate.ci.rLNLN(alpha, parameter, prev.result, dataset, n, TY,
    fix.mu = F, fixed.mu)
 }
 \arguments{
@@ -36,7 +36,7 @@ if TRUE, the log-means are kept fixed in the estimation procedure. Otherwise, th
   \item{fixed.mu}{
 a vector containing the values to which the log-means should be fixed if \cr fix.mu==T. The order of components is as follows:
 
-(mu_type_1_gene_1, mu_type_1_gene_2, ..., 
+(mu_type_1_gene_1, mu_type_1_gene_2, ...,
 
  mu_type_2_gene_1, mu_type_2_gene_2, ...).
 
@@ -57,7 +57,9 @@ Approximate marginal maximum likelihood confidence intervals for all parameter c
 "Parameterizing cell-to-cell regulatory heterogeneities via stochastic transcriptional profiles" by Sameer S Bajikar*, Christiane Fuchs*, Andreas Roller, Fabian J Theis^ and Kevin A Janes^: PNAS 2014, 111(5), E626-635 (* joint first authors, ^ joint last authors)
 }
 \author{
-Christiane Fuchs
+Lisa Amrhein, Christiane Fuchs
+
+Maintainer: Christiane Fuchs <christiane.fuchs@helmholtz-muenchen.de>
 }
 \keyword{ maximum likelihood confidence interval }
 \keyword{ stochastic profiling }

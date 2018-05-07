@@ -44,7 +44,9 @@ The lengths of p.vector, mu.vector and sigma.vector have to be identical. Their 
 "Parameterizing cell-to-cell regulatory heterogeneities via stochastic transcriptional profiles" by Sameer S Bajikar*, Christiane Fuchs*, Andreas Roller, Fabian J Theis^ and Kevin A Janes^: PNAS 2014, 111(5), E626-635 (* joint first authors, ^ joint last authors)
 }
 \author{
-Christiane Fuchs
+Lisa Amrhein, Christiane Fuchs
+
+Maintainer: Christiane Fuchs <christiane.fuchs@helmholtz-muenchen.de>
 }
 \examples{
 # generate random variables

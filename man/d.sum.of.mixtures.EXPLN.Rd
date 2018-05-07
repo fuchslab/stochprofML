@@ -8,7 +8,7 @@ Sums of mixtures of zero, one or more lognormal random variables and one exponen
 Density and random generation of a sum of i.i.d. random variables, where each random variable is from the following mixture distribution: With probability p_i, it is of type i. For all but the largest i, it is lognormally distributed with log-mean mu_i and log-standard deviation sigma_i. Otherwise it is exponentially distributed with rate lambda.
 }
 \usage{
-d.sum.of.mixtures.EXPLN(y, n, p.vector, mu.vector, sigma.vector, lambda, 
+d.sum.of.mixtures.EXPLN(y, n, p.vector, mu.vector, sigma.vector, lambda,
    logdens = T)
 r.sum.of.mixtures.EXPLN(k, n, p.vector, mu.vector, sigma.vector, lambda)
 }
@@ -48,7 +48,9 @@ The lengths of mu.vector and sigma.vector have to be identical. p.vector has to 
 "Parameterizing cell-to-cell regulatory heterogeneities via stochastic transcriptional profiles" by Sameer S Bajikar*, Christiane Fuchs*, Andreas Roller, Fabian J Theis^ and Kevin A Janes^: PNAS 2014, 111(5), E626-635 (* joint first authors, ^ joint last authors)
 }
 \author{
-Christiane Fuchs
+Lisa Amrhein, Christiane Fuchs
+
+Maintainer: Christiane Fuchs <christiane.fuchs@helmholtz-muenchen.de>
 }
 \examples{
 # generate random variables

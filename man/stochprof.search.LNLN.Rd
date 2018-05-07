@@ -7,8 +7,8 @@ Calculation of the log likelihood function of the LN-LN model
 Calculates the log likelihood function of the parameters of the LN-LN model for a given dataset at certain parameter values.
 }
 \usage{
-stochprof.search.LNLN(dataset, n, TY, method = "grid", M = 10, 
-   par.range = NULL, prev.result = NULL, fix.mu = F, fixed.mu, 
+stochprof.search.LNLN(dataset, n, TY, method = "grid", M = 10,
+   par.range = NULL, prev.result = NULL, fix.mu = F, fixed.mu,
    genenames = NULL, print.output = F, use.constraints = F)
 }
 \arguments{
@@ -22,7 +22,7 @@ number of cells taken from each tissue sample
 number of types of cells that is assumed in the stochastic model
 }
   \item{method}{
-determines whether a grid search or the Nelder-Mead algorithm should be applied: 
+determines whether a grid search or the Nelder-Mead algorithm should be applied:
 If method=="grid", the log likelihood function is simply evaluated at certain parameter values that are randomly drawn. If method=="optim", a Nelder-Mead search starts at a randomly drawn set of parameter values in order to find a local maximum. The resulting locally optimal parameter is stored in the results matrix as one row.
 }
   \item{M}{
@@ -40,7 +40,7 @@ if TRUE, the log-means are kept fixed in the estimation procedure. Otherwise, th
   \item{fixed.mu}{
 vector containing the values to which the log-means should be fixed if fix.mu==T. The order of components is as follows:
 
-(mu_type_1_gene_1, mu_type_1_gene_2, ..., 
+(mu_type_1_gene_1, mu_type_1_gene_2, ...,
 
  mu_type_2_gene_1, mu_type_2_gene_2, ...).
 
@@ -59,7 +59,7 @@ if TRUE, constraints on the individual population densities are applied; see \co
 \details{
 The values at which the target function is calculated are randomly drawn from some range specified by "par.range". If method=="grid", the target function is simply evaluated
  at such a randomly drawn parameter vector. If method=="optim", this randomly drawn vector is
- passed to the Nelder-Mead algorithm as a starting value in order to search for a local 
+ passed to the Nelder-Mead algorithm as a starting value in order to search for a local
  maximum around it.
 }
 \value{
@@ -69,7 +69,9 @@ A matrix with the following entries: Each row corresponds to one parameter combi
 "Parameterizing cell-to-cell regulatory heterogeneities via stochastic transcriptional profiles" by Sameer S Bajikar*, Christiane Fuchs*, Andreas Roller, Fabian J Theis^ and Kevin A Janes^: PNAS 2014, 111(5), E626-635 (* joint first authors, ^ joint last authors)
 }
 \author{
-Christiane Fuchs
+Lisa Amrhein, Christiane Fuchs
+
+Maintainer: Christiane Fuchs <christiane.fuchs@helmholtz-muenchen.de>
 }
 \keyword{ maximum likelihood estimation }
 \keyword{ stochastic profiling }

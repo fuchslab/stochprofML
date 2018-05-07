@@ -26,7 +26,7 @@ The \code{sod2} dataset contains real 10-cell samplings from the detoxifying enz
 \value{
 A list as returned by \code{stochprof.loop}, i.e. the following components:
 \item{mle}{maximum likelihood estimate}
-\item{loglikeli}{value of the log-likelihood function at maximum likelihood estimate}
+\item{loglikeli}{value of the negative log-likelihood function at maximum likelihood estimate}
 \item{ci}{approximate marginal maximum likelihood confidence intervals for the maximum likelihood estimate}
 \item{pargrid}{matrix containing parameter combinations and according values of the target function}
 \item{bic}{Bayesian information criterion value}
@@ -37,7 +37,7 @@ A list as returned by \code{stochprof.loop}, i.e. the following components:
 "Parameterizing cell-to-cell regulatory heterogeneities via stochastic transcriptional profiles" by Sameer S Bajikar*, Christiane Fuchs*, Andreas Roller, Fabian J Theis^ and Kevin A Janes^: PNAS 2014, 111(5), E626-635 (* joint first authors, ^ joint last authors)
 }
 \author{
-Christiane Fuchs
+Lisa Amrhein, Christiane Fuchs
 
 Maintainer: Christiane Fuchs <christiane.fuchs@helmholtz-muenchen.de>
 }

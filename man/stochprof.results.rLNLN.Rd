@@ -7,7 +7,7 @@ Evaluation of results from estimation of rLN-LN model
 Evaluates the set of results that are passed to this function. That means, it removes entries where the target function is equal to infinity, it removes double entries, it removes unlikely parameter combinations (if there are too many) etc., and it sorts the data. When show.plots==T, the results are graphically displayed.
 }
 \usage{
-stochprof.results.rLNLN(prev.result, TY, show.plots = T, plot.title = "", 
+stochprof.results.rLNLN(prev.result, TY, show.plots = T, plot.title = "",
    pdf.file, fix.mu = F)
 }
 \arguments{
@@ -37,6 +37,8 @@ Matrix with sorted and evaluated results. The columns are exactly the same as th
 "Parameterizing cell-to-cell regulatory heterogeneities via stochastic transcriptional profiles" by Sameer S Bajikar*, Christiane Fuchs*, Andreas Roller, Fabian J Theis^ and Kevin A Janes^: PNAS 2014, 111(5), E626-635 (* joint first authors, ^ joint last authors)
 }
 \author{
-Christiane Fuchs
+Lisa Amrhein, Christiane Fuchs
+
+Maintainer: Christiane Fuchs <christiane.fuchs@helmholtz-muenchen.de>
 }
 \keyword{ stochastic profiling }
