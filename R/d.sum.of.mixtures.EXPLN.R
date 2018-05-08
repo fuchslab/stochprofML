@@ -66,7 +66,7 @@ function(y,n,p.vector,mu.vector,sigma.vector,lambda,logdens=T) {
 
 
    # all possible combinations for how many of the n random variables are of which type
-       j.combis <- comb.summands(k,TY)
+       j.combis <- comb.summands(k,length(p.vector))
 
 
        for (i in 1:nrow(j.combis))  {
