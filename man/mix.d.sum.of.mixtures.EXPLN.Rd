@@ -7,17 +7,14 @@ Density of the sum of mixtures of zero, one or more lognormal random variables a
 Density of a sum of i.i.d. random variables, where each random variable is from the following mixture distribution: With probability p_i, it is of type i. For all but the largest i, it is lognormally distributed with log-mean mu_i and log-standard deviation sigma_i. Otherwise it is exponentially distributed with rate lambda. The density is somehow a "mixed" one, as for all values in \code{n} the density of the random varibale is calculated and the weighted average is taken to be the density of this specific value.
 }
 \usage{
-mix.d.sum.of.mixtures.EXPLN(y, n, p.vector, mu.vector, sigma.vector, lambda,
+mix.d.sum.of.mixtures.EXPLN(y, n.vector, p.vector, mu.vector, sigma.vector, lambda,
    logdens = T)
 }
 \arguments{
   \item{y}{
 the argument at which the density is evaluated
 }
-  \item{k}{
-number of i.i.d. random variables returned by this function (in the considered application: number of tissue samples)
-}
-  \item{n}{
+  \item{n.vector}{
 the number of random variables entering each sum (in the considered application: number of cells per tissue sample). This can also be a vector stating how many cells are in each sample seperatly
 }
   \item{p.vector}{

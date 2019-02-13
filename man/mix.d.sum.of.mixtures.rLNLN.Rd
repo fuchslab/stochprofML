@@ -7,16 +7,13 @@ Density of the sum of mixtures of lognormal random variables weighted by all pos
 Density and random generation of a sum of i.i.d. random variables, where each random variable is from the following mixture distribution: With probability p_i, it is of type i. In that case, it is lognormally distributed with log-mean mu_i and log-standard deviation sigma_i.  The density is somehow a "mixed" one, as for all values in \code{n} the density of the random varibale is calculated and the weighted average is taken to be the density of this specific value.
 }
 \usage{
-mix.d.sum.of.mixtures.rLNLN(y, n, p.vector, mu.vector, sigma.vector, logdens = T)
+mix.d.sum.of.mixtures.rLNLN(y, n.vector, p.vector, mu.vector, sigma.vector, logdens = T)
 }
 \arguments{
   \item{y}{
 the argument at which the density is evaluated
 }
-  \item{k}{
-number of i.i.d. random variables returned by this function (in the considered application: number of tissue samples)
-}
-  \item{n}{
+  \item{n.vector}{
 the number of random variables entering each sum (in the considered application: number of cells per tissue sample). This can also be a vector stating how many cells are in each sample seperatly
 }
   \item{p.vector}{

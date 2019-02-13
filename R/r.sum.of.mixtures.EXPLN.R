@@ -65,8 +65,8 @@ function(k,n,p.vector,mu.vector,sigma.vector,lambda) {
       full.mu.vector <- rep(0,n[j]-N.vector[TY])
       full.sigma.vector <- full.mu.vector
       index <- 0
-      for (i in 1:length(p.vector)) {
-         if (index<n-N.vector[TY]) {
+      for (i in 1:length(p.vector-1)) {
+         if (index<n[j]-N.vector[TY]) {
             full.mu.vector[index+(1:N.vector[i])] <- mu.vector[i]
             full.sigma.vector[index+(1:N.vector[i])] <- sigma.vector[i]
             index <- index + N.vector[i]

@@ -11,3 +11,4 @@ Description: Next Version of the R package originally accompanying the paper "Pa
 License: GPL (>= 2)
 LazyData: TRUE
 Packaged: 2014-10-17 18:39:03 UTC; Christiane Dargatz
+RoxygenNote: 6.0.1

@@ -13,7 +13,7 @@ mix.d.sum.of.mixtures.LNLN <-
 # Parameters:
 #
 # - the density is evaluated at y
-# - n is the number of cells taken from each tissue sample. This can also be a vector stating how many
+# - n.vector is the number of cells taken from each tissue sample. This can also be a vector stating how many
 #   cells are in each sample seperatly.
 # - p.vector is a vector containing the probabilities for each type of cell.
 #   Its elements have to sum up to one.
