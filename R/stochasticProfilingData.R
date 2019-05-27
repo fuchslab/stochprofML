@@ -138,7 +138,7 @@ function() {
                        this.text <- "There are non-positive values. Please enter only finite natural numbers.\n"
                    }
                    else {
-                       if (length(n) != 1 && length(n)!=nrow(dataset)) {
+                       if (length(n) != 1 && length(n)!=k) {
                            this.text <- "The length of n does not agree with the number of\nobservations in the data. Please try again.\n"
                        }
                        else {
@@ -233,7 +233,7 @@ function() {
                cat("There are non-positive values. Please enter only finite natural numbers.\n\n\n")
                }
            else {
-               if (length(n) != 1 && length(n)!=nrow(k)) {
+               if (length(n) != 1 && length(n)!=k) {
                    cat("The number of observations does not agree with the number of\nobservations of the data. Please try again.\n\n\n")
                 }
                else {
@@ -245,8 +245,7 @@ function() {
 
 
 
-       } else
-           if(input_n == 3){
+       } else if(input_n == 3){
        cat("---------\n")
        continue_alg <- F
 
@@ -699,35 +698,50 @@ function() {
        if (model==1) {
           set.model.functions("LN-LN")
           dataset[,g] <- r.sum.of.mixtures.LNLN(k,n,p,mu.list[[g]],rep(sigma,TY))
-          if(number == 1){
           x <- seq(round(min(dataset[,g])),round(max(dataset[,g])),(round(max(dataset[,g]))-round(min(dataset[,g])))/500)
+          if(number == 1){
           y <- d.sum.of.mixtures.LNLN(x,n,p,mu.list[[g]],rep(sigma,TY),logdens=F)
           xlabel <- "Sum of mixtures of lognormals"
+          }
+          else{
+          y <- mix.d.sum.of.mixtures.LNLN(x, n, p,mu.list[[g]], rep(sigma,TY), logdens=F)
+          xlabel <- "Mixed density of mixtures of lognormals"
           }
        }
        else if (model==2) {
           set.model.functions("rLN-LN")
           dataset[,g] <- r.sum.of.mixtures.rLNLN(k,n,p,mu.list[[g]],sigma)
-          if(number == 1){
           x <- seq(round(min(dataset[,g])),round(max(dataset[,g])),(round(max(dataset[,g]))-round(min(dataset[,g])))/500)
-          y <- d.sum.of.mixtures.rLNLN(x,n,p,mu.list[[g]],sigma,logdens=F)
-          xlabel <- "Sum of mixtures of lognormals"
+          if(number == 1){
+              y <- d.sum.of.mixtures.rLNLN(x,n,p,mu.list[[g]],sigma,logdens=F)
+              xlabel <- "Sum of mixtures of lognormals"
           }
-       }
-       else if (model==3) {
+          else{
+              y <- mix.d.sum.of.mixtures.rLNLN(x, n, p,mu.list[[g]], sigma, logdens=F)
+              xlabel <- "Mixed density of mixtures of lognormals"
+          }
+        }
+        else if (model==3) {
           set.model.functions("EXP-LN")
           dataset[,g] <- r.sum.of.mixtures.EXPLN(k,n,p,mu.list[[g]],sigma,lambda.list[[g]])
-          if(number == 1){
           x <- seq(round(min(dataset[,g])),round(max(dataset[,g])),(round(max(dataset[,g]))-round(min(dataset[,g])))/500)
-          y <- d.sum.of.mixtures.EXPLN(x,n,p,mu.list[[g]],sigma,lambda.list[[g]],logdens=F)
-          xlabel <- "Sum of mixtures of lognormals and exponentials"
+          if(number == 1){
+              y <- d.sum.of.mixtures.EXPLN(x,n,p,mu.list[[g]],sigma,lambda.list[[g]],logdens=F)
+              xlabel <- "Sum of mixtures of lognormals and exponentials"
+          }
+          else{
+              y <- mix.d.sum.of.mixtures.EXPLN(x, n, p,mu.list[[g]], sigma,lambda.list[[g]], logdens=F)
+              xlabel <- "Mixed density of mixtures of lognormals and exponentials"
           }
        }
-       if(number == 1){
        hist(dataset[,g],main=paste("Gene",g),breaks=50,xlab=xlabel,ylab="Density",freq=F,col="lightgrey")
        lines(x,y,col="blue",lwd=3)
+       if (number == 1){
        legend("topright",legend=c("data generating pdf"),col=c("blue"),lty=1,lwd=3)
-        }
+       }
+       else{
+           legend("topright",legend=c("data generating mixed pdf"),col=c("blue"),lty=1,lwd=3)
+       }
    }
    colnames(dataset) <- paste("gene",1:m)
    rownames(dataset) <- paste("observation",1:k)
