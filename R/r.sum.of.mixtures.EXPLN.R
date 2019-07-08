@@ -47,9 +47,7 @@ function(k,n,p.vector,mu.vector,sigma.vector,lambda,N.matrix = NULL) {
          stop("N.matrix has to be a matrix, where each column describes the decomposition of one observation, i.e.
            the number of cells of each contained population. Populations are shown in the rows ")
       }}
-   if(length(n) == 1){
-      n<-rep(n, k)
-      }
+
 
    TY <- length(p.vector)
 
@@ -66,7 +64,9 @@ function(k,n,p.vector,mu.vector,sigma.vector,lambda,N.matrix = NULL) {
          }
       }
    }
-
+   if(length(n) == 1){
+      n<-rep(n, k)
+   }
    # draw the summands and sum up
    random <- rep(NA,k)
    for (j in 1:k) {

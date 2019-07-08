@@ -53,8 +53,8 @@ function(k,n,p.vector,mu.vector,sigma.vector,N.matrix = NULL) {
       }
    }
    if(length(n) == 1){
-     n<-rep(n, k)
-     }
+      n<-rep(n, k)
+   }
 
    # draw the summands and sum up
    random <- rep(NA,k)
