@@ -1,5 +1,5 @@
 r.sum.of.mixtures.EXPLN <-
-function(k,n,p.vector,mu.vector,sigma.vector,lambda) {
+function(k,n,p.vector,mu.vector,sigma.vector,lambda,N.matrix = NULL) {
 # Draws k i.i.d. random variables from the following distribution:
 # Each random variable is the sum of another n independent random variables.
 # These are from a mixture of zero, one or more lognormal distributions and
@@ -18,6 +18,7 @@ function(k,n,p.vector,mu.vector,sigma.vector,lambda) {
 # - mu.vector=(mu1,mu2,...,mu{T-1]) is the log-mean for each lognormal type
 # - sigma.vector=(sigma1,...,sigma{T-1}) is the log-standard deviation for each lognormal type
 # - lambda is the rate for the exponential type
+# - N.matrix is the possible input of the decomposition of random variables coming from the different types
 #
 # The lengths mu.vector and sigma.vector have to be identical.
 # p.vector has to have one component more.
@@ -41,19 +42,29 @@ function(k,n,p.vector,mu.vector,sigma.vector,lambda) {
    if(length(n) != 1 && length(n) != k){
       stop("r.sum.of.mixtures: n has to be either a finite natural number or vector, having the same length as the sample size.")
    }
-
+   if(!is.null(N.matrix)){
+      if(!(dim(N.matrix) == c(k,length(p.vector)) && rowSums(N.matrix) == n )){
+         stop("N.matrix has to be a matrix, where each column describes the decomposition of one observation, i.e.
+           the number of cells of each contained population. Populations are shown in the rows ")
+      }}
+   if(length(n) == 1){
+      n<-rep(n, k)
+      }
 
    TY <- length(p.vector)
 
    # draw the number of summands of type i (i.th column) in each sample j (j.th row)
-   if(length(n) == 1){
-       N.matrix <- t(rmultinom(n=k, size=n, prob=p.vector))
-       n<-rep(n, k)
-   } else {
-       N.matrix <- matrix(0, nrow=k, ncol=length(p.vector))
-       for(j in 1:k){
-           N.matrix[j,] <- t(rmultinom(n=1, size=n[j], prob=p.vector))
-       }
+   # and check if N.matrix is given as an argument!
+   if(is.null(N.matrix)){
+      if(length(n) == 1){
+         N.matrix <- t(rmultinom(n=k, size=n, prob=p.vector))
+         n<-rep(n, k)
+      } else {
+         N.matrix <- matrix(0, nrow=k, ncol=length(p.vector))
+         for(j in 1:k){
+            N.matrix[j,] <- t(rmultinom(n=1, size=n[j], prob=p.vector))
+         }
+      }
    }
 
    # draw the summands and sum up

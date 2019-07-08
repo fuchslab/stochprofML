@@ -10,7 +10,7 @@ Density and random generation of a sum of i.i.d. random variables, where each ra
 \usage{
 d.sum.of.mixtures.EXPLN(y, n, p.vector, mu.vector, sigma.vector, lambda,
    logdens = T)
-r.sum.of.mixtures.EXPLN(k, n, p.vector, mu.vector, sigma.vector, lambda)
+r.sum.of.mixtures.EXPLN(k, n, p.vector, mu.vector, sigma.vector, lambda, N.matrix)
 }
 \arguments{
   \item{y}{
@@ -23,7 +23,6 @@ number of i.i.d. random variables returned by this function (in the considered a
 the number of random variables entering each sum (in the considered application: number of cells per tissue sample). This can also be a vector stating how many cells are in each sample seperatly.
 }
   \item{p.vector}{
-vector (p1,p2,..,pT) containing the probabilities for each type of cell. Its elements have to sum up to one
 }
   \item{mu.vector}{
 vector (mu1,mu2,...,mu(T-1)) containing the log-means for each lognormal type (types 1 to T-1)
@@ -36,6 +35,9 @@ the rate for the exponential type (type T)
 }
   \item{logdens}{
 if TRUE, the log of the density is returned
+}
+  \item{N.matrix}{
+optional. Matrix, that shows the decomposition of samples to be generated. Each row stands for a future sample and the columns show the decomposition of types for the specific sample such that the row sum should be n (either a value, i.e. all the same or a vector).
 }
 }
 \details{

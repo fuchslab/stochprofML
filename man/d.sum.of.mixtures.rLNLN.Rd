@@ -9,7 +9,7 @@ Density and random generation of a sum of i.i.d. random variables, where each ra
 }
 \usage{
 d.sum.of.mixtures.rLNLN(y, n, p.vector, mu.vector, sigma.vector, logdens = T)
-r.sum.of.mixtures.rLNLN(k, n, p.vector, mu.vector, sigma.vector)
+r.sum.of.mixtures.rLNLN(k, n, p.vector, mu.vector, sigma.vector, N.matrix)
 }
 \arguments{
   \item{y}{
@@ -32,6 +32,9 @@ vector (sigma1,...,sigmaT) containing the log-standard deviations sigma for each
 }
   \item{logdens}{
 if TRUE, the log of the density is returned
+}
+  \item{N.matrix}{
+optional. Matrix, that shows the decomposition of samples to be generated. Each row stands for a future sample and the columns show the decomposition of types for the specific sample such that the row sum should be n (either a value, i.e. all the same or a vector).
 }
 }
 \details{

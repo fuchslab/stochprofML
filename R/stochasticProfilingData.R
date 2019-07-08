@@ -693,11 +693,23 @@ function() {
    par(ask=T)
 
    # Prompting finished!! Now generate data.
+
+
+   if(length(n) == 1){
+      N.matrix <- t(rmultinom(n=k, size=n, prob=p))
+      } else {
+      N.matrix <- matrix(0, nrow=k, ncol=length(p))
+      for(j in 1:k){
+         N.matrix[j,] <- t(rmultinom(n=1, size=n[j], prob=p))
+      }
+   }
+
+
    dataset <- matrix(NA,nrow=k,ncol=m)
    for (g in 1:m) {
        if (model==1) {
           set.model.functions("LN-LN")
-          dataset[,g] <- r.sum.of.mixtures.LNLN(k,n,p,mu.list[[g]],rep(sigma,TY))
+          dataset[,g] <- r.sum.of.mixtures.LNLN(k,n,p,mu.list[[g]],rep(sigma,TY), N.matrix)
           x <- seq(round(min(dataset[,g])),round(max(dataset[,g])),(round(max(dataset[,g]))-round(min(dataset[,g])))/500)
           if(number == 1){
           y <- d.sum.of.mixtures.LNLN(x,n,p,mu.list[[g]],rep(sigma,TY),logdens=F)
@@ -710,7 +722,7 @@ function() {
        }
        else if (model==2) {
           set.model.functions("rLN-LN")
-          dataset[,g] <- r.sum.of.mixtures.rLNLN(k,n,p,mu.list[[g]],sigma)
+          dataset[,g] <- r.sum.of.mixtures.rLNLN(k,n,p,mu.list[[g]],sigma, N.matrix)
           x <- seq(round(min(dataset[,g])),round(max(dataset[,g])),(round(max(dataset[,g]))-round(min(dataset[,g])))/500)
           if(number == 1){
               y <- d.sum.of.mixtures.rLNLN(x,n,p,mu.list[[g]],sigma,logdens=F)
@@ -723,7 +735,7 @@ function() {
         }
         else if (model==3) {
           set.model.functions("EXP-LN")
-          dataset[,g] <- r.sum.of.mixtures.EXPLN(k,n,p,mu.list[[g]],sigma,lambda.list[[g]])
+          dataset[,g] <- r.sum.of.mixtures.EXPLN(k,n,p,mu.list[[g]],sigma,lambda.list[[g]], N.matrix)
           x <- seq(round(min(dataset[,g])),round(max(dataset[,g])),(round(max(dataset[,g]))-round(min(dataset[,g])))/500)
           if(number == 1){
               y <- d.sum.of.mixtures.EXPLN(x,n,p,mu.list[[g]],sigma,lambda.list[[g]],logdens=F)
