@@ -1,0 +1,9 @@
+sudo: required
+language: r
+r_binary_packages:
+    - MASS
+    - numDeriv
+cache: packages
+os:
+    - linux
+    - osx

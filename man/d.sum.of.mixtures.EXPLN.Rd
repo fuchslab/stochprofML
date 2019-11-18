@@ -20,7 +20,7 @@ the argument at which the density is evaluated
 number of i.i.d. random variables returned by this function (in the considered application: number of tissue samples)
 }
   \item{n}{
-the number of random variables entering each sum (in the considered application: number of cells per tissue sample). This can also be a vector stating how many cells are in each sample seperatly.
+the number of random variables entering each sum (in the considered application: number of cells per tissue sample). This can also be a vector stating how many cells are in each sample separatly.
 }
   \item{p.vector}{
 }
@@ -47,12 +47,14 @@ The lengths of mu.vector and sigma.vector have to be identical. p.vector has to 
 'd.sum.of.mixtures.EXPLN' gives the density, and 'r.sum.of.mixtures.EXPLN' generates random variables.
 }
 \references{
-"Parameterizing cell-to-cell regulatory heterogeneities via stochastic transcriptional profiles" by Sameer S Bajikar*, Christiane Fuchs*, Andreas Roller, Fabian J Theis^ and Kevin A Janes^: PNAS 2014, 111(5), E626-635 (* joint first authors, ^ joint last authors)
+"Parameterizing cell-to-cell regulatory heterogeneities via stochastic transcriptional profiles" by Sameer S Bajikar*, Christiane Fuchs*, Andreas Roller, Fabian J Theis^ and Kevin A Janes^: PNAS 2014, 111(5), E626-635 (* joint first authors, ^ joint last authors) <doi:10.1073/pnas.1311647111>
+"Pheno-seq - linking visual
+  features and gene expression in 3D cell culture systems" by Stephan M. Tirier, Jeongbin Park, Friedrich Preusser, Lisa Amrhein, Zuguang Gu, Simon Steiger, Jan-Philipp Mallm, Teresa Krieger, Marcel Waschow, Bjoern Eismann, Marta Gut, Ivo G. Gut, Karsten Rippe, Matthias Schlesner, Fabian Theis, Christiane Fuchs, Claudia R. Ball, Hanno Glimm, Roland Eils & Christian Conrad: Sci Rep 9, 12367 (2019) <doi:10.1038/s41598-019-48771-4>
 }
 \author{
 Lisa Amrhein, Christiane Fuchs
 
-Maintainer: Christiane Fuchs <christiane.fuchs@helmholtz-muenchen.de>
+Maintainer: Lisa Amrhein <amrheinlisa@gmail.com>
 }
 \examples{
 # generate random variables

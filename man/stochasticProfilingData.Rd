@@ -16,12 +16,14 @@ This function generates a dataset of i.i.d synthetic measurements as considered 
 A matrix containing the synthetic data. Columns stand for different genes, rows for samples.
 }
 \references{
-"Parameterizing cell-to-cell regulatory heterogeneities via stochastic transcriptional profiles" by Sameer S Bajikar*, Christiane Fuchs*, Andreas Roller, Fabian J Theis^ and Kevin A Janes^: PNAS 2014, 111(5), E626-635 (* joint first authors, ^ joint last authors)
+"Parameterizing cell-to-cell regulatory heterogeneities via stochastic transcriptional profiles" by Sameer S Bajikar*, Christiane Fuchs*, Andreas Roller, Fabian J Theis^ and Kevin A Janes^: PNAS 2014, 111(5), E626-635 (* joint first authors, ^ joint last authors) <doi:10.1073/pnas.1311647111>
+"Pheno-seq - linking visual
+  features and gene expression in 3D cell culture systems" by Stephan M. Tirier, Jeongbin Park, Friedrich Preusser, Lisa Amrhein, Zuguang Gu, Simon Steiger, Jan-Philipp Mallm, Teresa Krieger, Marcel Waschow, Bjoern Eismann, Marta Gut, Ivo G. Gut, Karsten Rippe, Matthias Schlesner, Fabian Theis, Christiane Fuchs, Claudia R. Ball, Hanno Glimm, Roland Eils & Christian Conrad: Sci Rep 9, 12367 (2019) <doi:10.1038/s41598-019-48771-4>
 }
 \author{
 Lisa Amrhein, Christiane Fuchs
 
-Maintainer: Christiane Fuchs <christiane.fuchs@helmholtz-muenchen.de>
+Maintainer: Lisa Amrhein <amrheinlisa@gmail.com>
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

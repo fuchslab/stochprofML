@@ -1,4 +1,11 @@
-.Rproj.user
-.Rhistory
+.Rproj.user/*
+.DS_Store
 .RData
-.Ruserdata
+.Rhistory
+*.swp
+*.o
+*.so
+*.Rproj
+.Rproj.user
+*.tar.gz
+src-i386

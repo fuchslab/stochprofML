@@ -15,6 +15,7 @@ function(model) {
    penalty.constraint <- NULL
    r.sum.of.mixtures <- NULL
    stochprof.search <- NULL
+   mix.d.sum.of.mixtures <- NULL
    rm(d.sum.of.mixtures)
    rm(backtransform.par)
    rm(stochprof.results)
@@ -26,6 +27,7 @@ function(model) {
    rm(penalty.constraint)
    rm(r.sum.of.mixtures)
    rm(stochprof.search)
+   rm(mix.d.sum.of.mixtures)
 
 
    if (model=="LN-LN") {
@@ -41,6 +43,7 @@ function(model) {
       stochprof.results <<- stochprof.results.LNLN
       stochprof.search <<- stochprof.search.LNLN
       transform.par <<- transform.par.LNLN
+      mix.d.sum.of.mixtures <<- mix.d.sum.of.mixtures.LNLN
    }
    else if (model=="rLN-LN") {
       backtransform.par <<- backtransform.par.rLNLN
@@ -55,6 +58,7 @@ function(model) {
       stochprof.results <<- stochprof.results.rLNLN
       stochprof.search <<- stochprof.search.rLNLN
       transform.par <<- transform.par.rLNLN
+      mix.d.sum.of.mixtures <<- mix.d.sum.of.mixtures.rLNLN
    }
    else if (model=="EXP-LN") {
       backtransform.par <<- backtransform.par.EXPLN
@@ -68,5 +72,6 @@ function(model) {
       stochprof.results <<- stochprof.results.EXPLN
       stochprof.search <<- stochprof.search.EXPLN
       transform.par <<- transform.par.EXPLN
+      mix.d.sum.of.mixtures <<- mix.d.sum.of.mixtures.EXPLN
    }
 }

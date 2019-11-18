@@ -18,7 +18,7 @@ License: \tab GPL (>= 2)\cr
 }
 There are three stochastic profiling models: The lognormal-lognormal (LN-LN) model assumes that each cell is from a mixture of one or more lognormal distributions with different log-means but identical log-standard deviations. In the relaxed lognormal-lognormal (rLN-LN) model, the log-standard deviations are not necessarily identical. The exponential-lognormal (EXP-LN) model considers the mixture of zero, one or more lognormal distributions and one exponential distribution.
 
-The user can immediately start with data generation and model estimation using the two functions \code{stochasticProfilingData} and \code{stochasticProfilingML}, repectively. These functions prompt the user to input the settings/data. Typical analyses are then performed without the user having to delve into the structure of this package.
+The user can immediately start with data generation and model estimation using the two functions \code{stochasticProfilingData} and \code{stochasticProfilingML}, respectively. These functions prompt the user to input the settings/data. Typical analyses are then performed without the user having to delve into the structure of this package.
 
 When not using one the above two functions, parameters can be estimated calling \code{stochprof.loop}, which again utilizes three other functions: \code{stochprof.search.LNLN}/ \code{stochprof.search.rLNLN}/ \code{stochprof.search.EXPLN} in order to calculate and locally optimize the likelihood function; \cr \code{stochprof.results.LNLN}/ \code{stochprof.results.rLNLN}/ \code{stochprof.results.EXPLN} for evaluating these results; and \code{calculate.ci.LNLN}/ \code{calculate.ci.rLNLN}/ \code{calculate.ci.EXPLN} for calculating confidence intervals.
 
@@ -30,13 +30,15 @@ The package provides four datasets: \code{sod2}, containing real measurements fo
 
 Examples for typical analyses are given below.
 }
+\references{
+"Parameterizing cell-to-cell regulatory heterogeneities via stochastic transcriptional profiles" by Sameer S Bajikar*, Christiane Fuchs*, Andreas Roller, Fabian J Theis^ and Kevin A Janes^: PNAS 2014, 111(5), E626-635 (* joint first authors, ^ joint last authors) <doi:10.1073/pnas.1311647111>
+"Pheno-seq - linking visual
+  features and gene expression in 3D cell culture systems" by Stephan M. Tirier, Jeongbin Park, Friedrich Preusser, Lisa Amrhein, Zuguang Gu, Simon Steiger, Jan-Philipp Mallm, Teresa Krieger, Marcel Waschow, Bjoern Eismann, Marta Gut, Ivo G. Gut, Karsten Rippe, Matthias Schlesner, Fabian Theis, Christiane Fuchs, Claudia R. Ball, Hanno Glimm, Roland Eils & Christian Conrad: Sci Rep 9, 12367 (2019) <doi:10.1038/s41598-019-48771-4>
+}
 \author{
 Lisa Amrhein, Christiane Fuchs
 
-Maintainer: Christiane Fuchs <christiane.fuchs@helmholtz-muenchen.de>
-}
-\references{
-"Parameterizing cell-to-cell regulatory heterogeneities via stochastic transcriptional profiles" by Sameer S Bajikar*, Christiane Fuchs*, Andreas Roller, Fabian J Theis^ and Kevin A Janes^: PNAS 2014, 111(5), E626-635 (* joint first authors, ^ joint last authors)
+Maintainer: Lisa Amrhein <amrheinlisa@gmail.com>
 }
 \keyword{ package }
 \keyword{ stochastic profiling }
