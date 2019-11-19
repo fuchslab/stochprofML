@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.com/fuchslab/stochprofML.svg?branch=master)](https://travis-ci.com/fuchslab/stochprofML)
+
+
 # stochprofML - Disclaimer
 This is the new version of the original stochprofML package (see: https://CRAN.R-project.org/package=stochprofML Version 1.2).
 The main difference is that you can use different n's, i.e. a dataset where each tissue sample originates from a different number of cells.
