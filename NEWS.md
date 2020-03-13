@@ -1,3 +1,6 @@
+# stochprofML 2.0.1
+* Deleted the argument "logdens" in mix.d.sum.of.mixtures because of a bug if set to TRUE.
+
 # stochprofML 2.0.0
 
 * Added a `NEWS.md` file to track changes to the package.

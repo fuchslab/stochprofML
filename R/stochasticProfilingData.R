@@ -716,7 +716,7 @@ function() {
           xlabel <- "Sum of mixtures of lognormals"
           }
           else{
-          y <- mix.d.sum.of.mixtures.LNLN(x, n, p,mu.list[[g]], rep(sigma,TY), logdens=F)
+          y <- mix.d.sum.of.mixtures.LNLN(x, n, p,mu.list[[g]], rep(sigma,TY))
           xlabel <- "Mixed density of mixtures of lognormals"
           }
        }
@@ -729,7 +729,7 @@ function() {
               xlabel <- "Sum of mixtures of lognormals"
           }
           else{
-              y <- mix.d.sum.of.mixtures.rLNLN(x, n, p,mu.list[[g]], sigma, logdens=F)
+              y <- mix.d.sum.of.mixtures.rLNLN(x, n, p,mu.list[[g]], sigma)
               xlabel <- "Mixed density of mixtures of lognormals"
           }
         }
@@ -742,7 +742,7 @@ function() {
               xlabel <- "Sum of mixtures of lognormals and exponentials"
           }
           else{
-              y <- mix.d.sum.of.mixtures.EXPLN(x, n, p,mu.list[[g]], sigma,lambda.list[[g]], logdens=F)
+              y <- mix.d.sum.of.mixtures.EXPLN(x, n, p,mu.list[[g]], sigma,lambda.list[[g]])
               xlabel <- "Mixed density of mixtures of lognormals and exponentials"
           }
        }

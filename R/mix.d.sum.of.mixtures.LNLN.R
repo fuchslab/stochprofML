@@ -1,5 +1,5 @@
 mix.d.sum.of.mixtures.LNLN <-
-    function(y, n.vector, p.vector, mu.vector, sigma.vector, logdens = T){
+    function(y, n.vector, p.vector, mu.vector, sigma.vector){
 # This function calculates a "mixed" density for a given n-vector and given data. So it
 # calculates the density of a given random-variable vector y, with given cell numbers n.
 # If each each value in y is a sum of n random variables from the following mixture
@@ -19,11 +19,11 @@ mix.d.sum.of.mixtures.LNLN <-
 #   Its elements have to sum up to one.
 # - mu.vector is the vector with mu-values for each type.
 # - sigma.vector is the vector with sigma-values for each type.
-# - if logdens==T, the log of this density is returned
+
 
 densmix <- matrix(0, ncol = length(y), nrow = length(n.vector))
     for(i in 1: length(n.vector)){
-        densmix[i, ] <- d.sum.of.mixtures.LNLN(y = y, n = n.vector[i], p.vector = p.vector, mu.vector = mu.vector, sigma.vector = sigma.vector, logdens = logdens)
+        densmix[i, ] <- d.sum.of.mixtures.LNLN(y = y, n = n.vector[i], p.vector = p.vector, mu.vector = mu.vector, sigma.vector = sigma.vector, logdens = FALSE)
     }
     Dens<-colSums(densmix)/length(n.vector)
 }

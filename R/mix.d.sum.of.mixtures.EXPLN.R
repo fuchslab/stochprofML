@@ -1,5 +1,5 @@
 mix.d.sum.of.mixtures.EXPLN <-
-    function(y, n.vector, p.vector, mu.vector, sigma.vector, lambda, logdens = T){
+    function(y, n.vector, p.vector, mu.vector, sigma.vector, lambda){
 # This function calculates a "mixed" density for a given n-vector and given data. So it
 # calculates the density of a given random-variable vector y, with given cell numbers n.
 # If each each value in y is a sum of n random variables from the following mixture
@@ -20,11 +20,11 @@ mix.d.sum.of.mixtures.EXPLN <-
 # - mu.vector is the vector with mu-values for each type.
 # - sigma.vector is the vector with sigma-values for each type.
 # - lambda is the rate for the exponential type.
-# - if logdens==T, the log of this density is returned
+
 
 densmix <- matrix(0, ncol = length(y), nrow = length(n.vector))
     for(i in 1: length(n.vector)){
-        densmix[i, ] <- d.sum.of.mixtures.EXPLN(y = y, n = n.vector[i], p.vector = p.vector, mu.vector = mu.vector, sigma.vector = sigma.vector, lambda =lambda, logdens = logdens)
+        densmix[i, ] <- d.sum.of.mixtures.EXPLN(y = y, n = n.vector[i], p.vector = p.vector, mu.vector = mu.vector, sigma.vector = sigma.vector, lambda =lambda, logdens = FALSE)
     }
     Dens<-colSums(densmix)/length(n.vector)
 }
