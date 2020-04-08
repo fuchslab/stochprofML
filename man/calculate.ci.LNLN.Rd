@@ -48,15 +48,15 @@ The intervals are approximate because the function uses the formula
 
     [ theta_i +/- q_(1-alpha/2) * sqrt(H_ii) ],
 
-where theta_i is the i.th parameter, q_(1-alpha/2) is the 1-alpha/2 quantile of the standard normal distribution, H is the inverse Hessian of the negative log likelihood function evaluated at the maximum likelihood estimate; H_ii is the i.th diagonal element of H. This approximation implicitly assumes that the log likelihood function is unimodal. The confidence interval is first calculated on the transformed, unrestricted parameter space and then back-transformed to the original one.
+where theta_i is the estimate of the i.th parameter, q_(1-alpha/2) is the 1-alpha/2 quantile of the standard normal distribution, H is the inverse Hessian of the negative log likelihood function evaluated at the maximum likelihood estimate; H_ii is the i.th diagonal element of H. This approximation implicitly assumes that the log likelihood function is unimodal. The confidence interval is first calculated on the transformed, unrestricted parameter space and then back-transformed to the original one.
 }
 \value{
 Approximate marginal maximum likelihood confidence intervals for all parameter components: Each row corresponds to one parameter (in the same order as always used in the stochastic profiling model). The first column contains lower bounds, the second column upper bounds.
 }
 \references{
 "Parameterizing cell-to-cell regulatory heterogeneities via stochastic transcriptional profiles" by Sameer S Bajikar*, Christiane Fuchs*, Andreas Roller, Fabian J Theis^ and Kevin A Janes^: PNAS 2014, 111(5), E626-635 (* joint first authors, ^ joint last authors) <doi:10.1073/pnas.1311647111>
-"Pheno-seq - linking visual
-  features and gene expression in 3D cell culture systems" by Stephan M. Tirier, Jeongbin Park, Friedrich Preusser, Lisa Amrhein, Zuguang Gu, Simon Steiger, Jan-Philipp Mallm, Teresa Krieger, Marcel Waschow, Bjoern Eismann, Marta Gut, Ivo G. Gut, Karsten Rippe, Matthias Schlesner, Fabian Theis, Christiane Fuchs, Claudia R. Ball, Hanno Glimm, Roland Eils & Christian Conrad: Sci Rep 9, 12367 (2019) <doi:10.1038/s41598-019-48771-4>
+
+"Pheno-seq - linking visual features and gene expression in 3D cell culture systems" by Stephan M. Tirier, Jeongbin Park, Friedrich Preusser, Lisa Amrhein, Zuguang Gu, Simon Steiger, Jan-Philipp Mallm, Teresa Krieger, Marcel Waschow, Bjoern Eismann, Marta Gut, Ivo G. Gut, Karsten Rippe, Matthias Schlesner, Fabian Theis, Christiane Fuchs, Claudia R. Ball, Hanno Glimm, Roland Eils & Christian Conrad: Sci Rep 9, 12367 (2019) <doi:10.1038/s41598-019-48771-4>
 }
 \author{
 Lisa Amrhein, Christiane Fuchs

@@ -5,7 +5,7 @@ function(alpha,parameter,prev.result,dataset,n,TY,fix.mu=F,fixed.mu) {
 # approximate because the function uses the formula
 #    [ theta_i +/- q_{1-alpha/2} * sqrt(H_ii) ],
 # where
-# * theta_i is the i.th parameter,
+   # * theta_i is the estimate of the i.th parameter,
 # * q_{1-alpha/2} is the 1-alpha/2 quantile of the standard normal distribution,
 # * H is the inverse Hessian of the negative log likelihood function evaluated
 #   at the maximum likelihood estimate; H_ii is the i.th diagonal element of H.
