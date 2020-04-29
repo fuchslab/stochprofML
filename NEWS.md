@@ -1,3 +1,10 @@
+# stochprofML 2.0.2
+* d.sum.of.lognormals: If it is not a real sum but only one summand use dlnorm directly
+* in d.sum.of.types (all models) and correspondingly d.sum.of.lognormal.types: bug fix, as mu.vector and sigma.vector  were wrongly filled for TY > 2.
+* small foramting changes on Help pages
+
+
+
 # stochprofML 2.0.1
 * Deleted the argument "logdens" in mix.d.sum.of.mixtures because of a bug if set to TRUE.
 
