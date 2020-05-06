@@ -8,7 +8,8 @@ Authors@R: c(
   person("Christoph", "Kurz", email="christoph.kurz@helmholtz-muenchen.de", role="ctb", comment="Author to function comb.summands.R'"))
 Maintainer: Lisa Amrhein <amrheinlisa@gmail.com>
 Depends: R (>= 2.0)
-Imports: MASS, numDeriv
+Imports: MASS, numDeriv, Rcpp (>= 0.12.10)
+LinkingTo: Rcpp, RcppArmadillo
 Description: New Version of the R package originally accompanying the paper 
   "Parameterizing cell-to-cell regulatory heterogeneities via stochastic transcriptional profiles" 
   by Sameer S Bajikar, Christiane Fuchs, Andreas Roller, Fabian J Theis and Kevin A Janes 
