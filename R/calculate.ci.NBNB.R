@@ -1,5 +1,5 @@
 calculate.ci.NBNB <-
-function(alpha,parameter,prev.result,dataset,n,TY) {
+function(alpha,parameter,prev.result,dataset,n,TY,fix.mu=fix.mu,fixed.mu=fixed.mu) {
 # Calculates approximate marginal maximum likelihood confidence intervals with
 # significance level alpha for all parameters in the model. The intervals are
 # approximate because the function uses the formula

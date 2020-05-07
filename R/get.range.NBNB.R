@@ -1,5 +1,5 @@
 get.range.NBNB <-
-function(method,prev.result,dataset,n,TY) {
+function(method,prev.result,dataset,n,TY,fix.mu = fix.mu, fixed.mu = fixed.mu) {
 # This function determines a parameter range in which it seems meaningful to search for
 # a maximum of the log likelihood function, based on previous evaluations of the
 # log likelihood. The return value is a two-columnmatrix, where each row correspond to one

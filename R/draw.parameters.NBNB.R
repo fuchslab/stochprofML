@@ -43,6 +43,7 @@ function(par.range,m) {
 
    # extract mu for gene 1 and its order
    size <- draw[TY:((m+1)*TY-1)]
+   size <- matrix(size,byrow=T,ncol=m)
 
    # extract mu
    mu <- draw[((m+1)*TY):length(draw)]

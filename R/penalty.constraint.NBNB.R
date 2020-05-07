@@ -4,7 +4,7 @@ function(dataset,parameter,smoothingpar=10^5) {
    m <- ncol(dataset)
    TY <- (length(parameter)+1)/(2*m+1)
    size <- parameter[TY:((m+1)*TY-1)]
-   mu <- parameter[(m+1)*TY:length(parameter)]
+   mu <- parameter[((m+1)*TY):length(parameter)]
 
    pen <- 0
    # build a matrix such that the g.th column contains the size values for gene g
@@ -26,10 +26,10 @@ function(dataset,parameter,smoothingpar=10^5) {
                x <- c(x,mode.igplus1)
                x <- x[order(x)]
             }
-            # density of nbs i at these values
-            d.NB1 <- d_snb(y = x, size = size[i, g], mu = mu[i, g])
-            # density of nbs i+1 at these values
-            d.NB2 <- d_snb(y=x, size = size[i+1, g], mu = mu[i+1, g])
+            # density of nbs i at these values, has to be rounded as NB can only handle integers
+            d.NB1 <- d_snb( round(x), size = size[i, g], mu = mu[i, g])
+            # density of nbs i+1 at these values, has to be rounded as NB can only handle integers
+            d.NB2 <- d_snb( round(x), size = size[i+1, g], mu = mu[i+1, g])
             # penalize if d.NB2>d.NB1
             pen <- pen + sum(pmax(0,d.NB2-d.NB1)^2)
             # now check whether population i+1 is peaked; in that case, the function d.sum.of.lognormals

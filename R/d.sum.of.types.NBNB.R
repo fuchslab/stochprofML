@@ -42,8 +42,8 @@ d.sum.of.types.NBNB <-
 
         if (sum(j.vector == 0) > 0){
             del <- which(j.vector == 0)
-            full.size.vector <- full.size.vector[,-del, drop = FALSE]
-            full.mu.vector <- full.mu.vector[,-del, drop = FALSE]
+            full.size.vector <- full.size.vector[-del]
+            full.mu.vector <- full.mu.vector[-del]
         }
 
 

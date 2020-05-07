@@ -1,14 +1,18 @@
 backtransform.par.NBNB <-
-function(this.par,m) {
+function(this.par,m,fix.mu,fixed.mu) {
 # Transforms the parameter from all real numbers back to its original scale, i.e.
 #
 # INPUT:
-#    this.par=(w1,w2,...w_(T-1),mu,log(sigma))
+#    this.theta=(w1,w2,...w_(T-1),log(size),log(mu))
 # with
 #    w_i = logit((p_1+...+p_i)/(p_1+...+p_(i+1))) for i=1,...,T-1
+# and
+#    size = (size_1_gene_1,size_2_gene_1,...,size_T_gene_1,...,size_1_gene_2,size_2_gene_2,...,size_T_gene_2)
+# and
+#    mu = (mu_1_gene_1,mu_2_gene_1,...,mu_T_gene_1,...,mu_1_gene_2,mu_2_gene_2,...,mu_T_gene_2)
 #
 # OUTPUT:
-#    this.theta=(p1,p2,...,p_(T-1),mu,sigma)
+#    this.par=(p1,p2,...,p_(T-1),size,mu)
 #
 #
 # - this.par is the parameter in the unrestricted space
@@ -19,12 +23,10 @@ function(this.par,m) {
 
 
    # determine number of types of cells
-   if (!fix.mu) {
-      TY <- length(this.par)/(m+1)
-   }
-   else {
-      TY <- length(this.par)
-   }
+   # don't include fix.mu  -> is ignored in the NBNB case
+
+      TY <- (length(this.par)+1)/(2*m+1)
+
 
    #######
    ## p ##

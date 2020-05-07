@@ -1,5 +1,5 @@
 stochprof.results.NBNB <-
-function(prev.result,TY,show.plots=T,plot.title="",pdf.file) {
+function(prev.result,TY,show.plots=T,plot.title="",pdf.file,fix.mu) {
 # Evaluates the set of results that are contained in prev.result. That means, it removes
 # entries where the target function is equal to infinity, it removes double entries,
 # it removes unlikely parameter combinations (if there are too many) etc. When show.plots==T,
@@ -57,7 +57,7 @@ function(prev.result,TY,show.plots=T,plot.title="",pdf.file) {
    largesize.indices <- which(size.max>1000)
    smallmu.indices <- which(mu.min<(0.00001))
    largemu.indices <- which(mu.max>1000)
-   mu.indices <- union(smallmu.indices,largemu.indices,smallsize.indices,largesize.indices)
+   mu.indices <- union(smallmu.indices,union(largemu.indices,union(smallsize.indices,largesize.indices)))
    if ((length(mu.indices)>0) && (length(mu.indices)<nrow(results))) {
       results <- results[-mu.indices,,drop=F]
    }

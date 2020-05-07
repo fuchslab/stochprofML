@@ -23,7 +23,7 @@ mix.d.sum.of.mixtures.NBNB <-
 
 densmix <- matrix(0, ncol = length(y), nrow = length(n.vector))
     for(i in 1: length(n.vector)){
-        densmix[i, ] <- d.sum.of.mixtures.LNLN(y = y, n = n.vector[i], p.vector = p.vector, size.vector = size.vector, mu.vector = mu.vector, logdens = FALSE)
+        densmix[i, ] <- d.sum.of.mixtures.NBNB(y = y, n = n.vector[i], p.vector = p.vector, size.vector = size.vector, mu.vector = mu.vector, logdens = FALSE)
     }
     Dens<-colSums(densmix)/length(n.vector)
 }

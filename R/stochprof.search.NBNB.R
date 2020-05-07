@@ -1,5 +1,5 @@
 stochprof.search.NBNB <-
-function(dataset,n,TY,method="grid",M=10,par.range=NULL,prev.result=NULL,genenames=NULL,print.output=F,use.constraints=F) {
+function(dataset,n,TY,method="grid",M=10,par.range=NULL,prev.result=NULL,fix.mu=F,fixed.mu,genenames=NULL,print.output=F,use.constraints=F) {
 # Calculates the log likelihood function of all model parameters for a given dataset
 # at certain parameter values. The so-obtained values are returned in a matrix with
 # the following entries: Each row corresponds to one parameter combination. All columns
@@ -87,8 +87,8 @@ function(dataset,n,TY,method="grid",M=10,par.range=NULL,prev.result=NULL,genenam
 
    # loglikelihood for one gene
    loglikeli <- function(y,p,size,mu) {
-      # p, mu and sigma are of length TY
-      max(-10^7,sum(d.sum.of.mixtures(y,n,p, size,mu,logdens=T)))
+      # p, size and mu are of length TY
+      max(-10^7,sum(d.sum.of.mixtures(y, n, p, size, mu, logdens=T)))
    }
 
    # this function will be minimized (the function "to.minimize" below just
@@ -141,7 +141,7 @@ function(dataset,n,TY,method="grid",M=10,par.range=NULL,prev.result=NULL,genenam
 
       # backtransformation
       # afterwards, back.theta is full-dim, incl. mu
-      back.theta <- backtransform.par(this.par=theta,m=m)
+      back.theta <- backtransform.par(this.par=theta,m=m,fix.mu=fix.mu,fixed.mu=fixed.mu)
 
       if (TY>1) {
          p <- back.theta[1:(TY-1)]
