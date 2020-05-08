@@ -145,6 +145,9 @@ function(model,dataset,n,TY,genenames=NULL,fix.mu=F,fixed.mu,par.range=NULL,prev
                }
                else if (method=="grid") {
                   M <- round(10^3/TY)
+                  if (model=="NB-NB") {  # wieder entfernen, dauert gerade nur so lange
+                     M <- 100
+                  }
                }
                else {
                   M <- round(10/TY)

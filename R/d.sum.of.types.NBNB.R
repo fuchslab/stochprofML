@@ -2,7 +2,7 @@ d.sum.of.types.NBNB <-
     function(y,j.vector,size.vector,mu.vector,logdens=T) {
 
         # Density for a sum of independent lognormally distributed variables,
-        # using the approximation method by Fenton [1].
+        # using the approximation method by Furman [x].
         #
         # - density is evaluated at y
         #
@@ -14,8 +14,7 @@ d.sum.of.types.NBNB <-
         # - size.vector=(size1,...,sizeT) is of the same length as j.vector. size_i is the
         #   size for type i.
         #
-        # - mu.vector is defined analogously as size.vector. It contains the standard
-        #   deviations (not variances!) of the according normal distributions.
+        # - mu.vector is defined analogously as size.vector. It contains the mean of each NB
         #
         # - if logdens==T, the log of this density is returned.
         #

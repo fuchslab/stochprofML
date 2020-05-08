@@ -32,7 +32,7 @@ function(dataset,parameter,smoothingpar=10^5) {
             d.NB2 <- d_snb( round(x), size = size[i+1, g], mu = mu[i+1, g])
             # penalize if d.NB2>d.NB1
             pen <- pen + sum(pmax(0,d.NB2-d.NB1)^2)
-            # now check whether population i+1 is peaked; in that case, the function d.sum.of.lognormals
+            # now check whether population i+1 is peaked; in that case, the function d_snb
             # most probably smoothed the density too much
             if (sum(d.NB2)==0) {
                if (mode.igplus1>mode.ig) {

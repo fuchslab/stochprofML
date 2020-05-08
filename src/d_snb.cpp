@@ -146,7 +146,8 @@ NumericVector d_snb(NumericVector& x,
         arma::colvec seqAlong = alphaSum + arma::regspace<arma::colvec>(0, 1, l_delta_6002.n_elem-1);
         seqAlong.for_each( [&val, &p1] (double& seqVal) { seqVal = R::dnbinom(val, seqVal, p1, 1); } );
         arma::colvec h1 = l_delta_6002 + seqAlong;
-        double k2 = (arma::max(h1) > -700) ? -1 :  std::ceil(arma::max(h1) / 700);
+        // double k2 = (arma::max(h1) > -700) ? -1 :  std::ceil(arma::max(h1) / 700);
+        double k2 = std::ceil(arma::max(h1) / 700);
         val = log(arma::sum(arma::exp(k2 * log(1e-305) + h1))) + k2 * log(1e305) + l_R2 + log(1e305);
       } );
 
