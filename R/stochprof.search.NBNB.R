@@ -220,6 +220,13 @@ function(dataset,n,TY,method="grid",M=10,par.range=NULL,prev.result=NULL,fix.mu=
       for (i in 1:M) {
          # draw starting value
          par0 <- draw.parameters(ranges,m) # full-dim.
+
+         if (print.output) {  # putput before optim starts so that I cans ee if something wents wrong in optim
+            cat("---\n")
+            cat("Start optim at:\n")
+            cat(par0,"\n")
+         }
+
          theta0 <- transform.par(this.par=par0,m=m)
 
          theta0[theta0==-Inf] <- -10^7
@@ -242,9 +249,6 @@ function(dataset,n,TY,method="grid",M=10,par.range=NULL,prev.result=NULL,fix.mu=
          all.results <- rbind(all.results,c(this.par,this.value))
 
          if (print.output) {
-            cat("---\n")
-            cat("Start optim at:\n")
-            cat(par0,"\n")
             cat("Arrived at:\n")
             cat(this.par,"\n")
          }
