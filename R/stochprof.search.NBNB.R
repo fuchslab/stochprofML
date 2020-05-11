@@ -68,7 +68,7 @@ function(dataset,n,TY,method="grid",M=10,par.range=NULL,prev.result=NULL,fix.mu=
    # names of variables
    if (TY==1) {
       varnames <- c(paste("size_",genenames,sep=""),
-                    paste("sigma_",genenames,sep="")
+                    paste("mu_",genenames,sep="")
                     )
    }
    else {
