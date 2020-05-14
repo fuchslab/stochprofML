@@ -103,7 +103,7 @@ NumericVector d_snb(NumericVector& x,
 
       arma::colvec l_delta_6002(infinite);
       l_delta_6002.fill(NA_REAL);
-      l_delta_6002[0] = log(1.0e-305);
+      l_delta_6002[0] = log(1e-300);
 
       arma::mat A = arma::repmat(alpha, infinite, 1);
       arma::mat E = arma::repmat(1-Q, infinite, 1);
@@ -118,20 +118,20 @@ NumericVector d_snb(NumericVector& x,
       ae = A % E;
 
       // compute row sums
-      arma::colvec L_XI_300 = arma::log(arma::sum(ae, 1) * 1.0e305);
+      arma::colvec L_XI_300 = arma::log(arma::sum(ae, 1) * 1e300);
 
       int i = 1, count = 2;
       while(i < count) {
         arma::vec ks2 = arma::linspace(1, i, i);
         arma::colvec X = L_XI_300.head(i) + arma::flipud(l_delta_6002.head(i));
 
-        double k = floor(max(X)/700);
+        double k = floor(max(X)/690);
         int kp = k > 0;
-        if(arma::max(X) > 700) {
-          l_delta_6002(i) = log(  sum(  exp(k * log(1e-305) + X)  * 1e-305 )  )
-            + (k - 1) * kp * log(1e305) + log(1e305) - log(i);
+        if(arma::max(X) > 690) {
+          l_delta_6002(i) = log(  sum(  exp(k * log(1e-300) + X)  * 1e-300 )  )
+            + (k - 1) * kp * log(1e300) + log(1e300) - log(i);
         } else {
-          l_delta_6002(i) = log(1e-305) + log(sum(exp(X))) - log(i);
+          l_delta_6002(i) = log(1e-300) + log(sum(exp(X))) - log(i);
         }
         count = std::min(count + 3 * (l_delta_6002[i] > l_delta_6002[i-1]), infinite);
         i++;
@@ -146,9 +146,9 @@ NumericVector d_snb(NumericVector& x,
         arma::colvec seqAlong = alphaSum + arma::regspace<arma::colvec>(0, 1, l_delta_6002.n_elem-1);
         seqAlong.for_each( [&val, &p1] (double& seqVal) { seqVal = R::dnbinom(val, seqVal, p1, 1); } );
         arma::colvec h1 = l_delta_6002 + seqAlong;
-        // double k2 = (arma::max(h1) > -700) ? -1 :  std::ceil(arma::max(h1) / 700);
-        double k2 = std::ceil(arma::max(h1) / 700);
-        val = log(arma::sum(arma::exp(k2 * log(1e-305) + h1))) + k2 * log(1e305) + l_R2 + log(1e305);
+        // double k2 = (arma::max(h1) > -690) ? -1 :  std::ceil(arma::max(h1) / 690);
+        double k2 = std::ceil(arma::max(h1) / 690);
+        val = log(arma::sum(arma::exp(k2 * log(1e-300) + h1))) + k2 * log(1e300) + l_R2 + log(1e300);
       } );
 
       if(log_v)
