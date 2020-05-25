@@ -67,9 +67,9 @@ function(prev.result,TY,show.plots=T,plot.title="",pdf.file,fix.mu) {
    #########################
 
    # round all entries to these numbers of decimals
-   nod.p <- 4
-   nod.all <- 3
-   nod.target <- 4
+   nod.p <- 10
+   nod.all <- 10
+   nod.target <- 10
 
    if (TY>1) {
       p.indices <- 1:(TY-1)
