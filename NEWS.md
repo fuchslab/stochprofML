@@ -1,3 +1,8 @@
+# stochprofML 2.0.3
+* export function set.model.function() as it is needed when using for example d.sum.of.mixtures.
+* in stochprof.results generate a duplicate of all previous results perform rounding of parameters and target and remove duplicates in the original result table, like this all results in the final output and used inside optimization are not rounded and belong 100% to the target negative loglikelihodd and BIC.
+
+
 # stochprofML 2.0.2
 * d.sum.of.lognormals: If it is not a real sum but only one summand use dlnorm directly
 * in d.sum.of.types (all models) and correspondingly d.sum.of.lognormal.types: bug fix, as mu.vector and sigma.vector  were wrongly filled for TY > 2.
@@ -9,7 +14,6 @@
 * Deleted the argument "logdens" in mix.d.sum.of.mixtures because of a bug if set to TRUE.
 
 # stochprofML 2.0.0
-
 * Added a `NEWS.md` file to track changes to the package.
 * Created a github repository: https://github.com/fuchslab/stochprofML
 * Extended n the number of cells that was constant over all samples to be flexible to be different for each sample.
