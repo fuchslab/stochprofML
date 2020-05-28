@@ -1,15 +1,17 @@
-exportPattern(stochprof.search.LNLN,stochprof.search.rLNLN,stochprof.search.EXPLN,
-              stochprof.results.LNLN,stochprof.results.rLNLN,stochprof.results.EXPLN,
+
+exportPattern(stochprof.search.LNLN,stochprof.search.rLNLN,stochprof.search.EXPLN,stochprof.search.NBNB,
+              stochprof.results.LNLN,stochprof.results.rLNLN,stochprof.results.EXPLN,stochprof.results.NBNB,
               stochprof.loop,set.model.funcions,
-              calculate.ci.LNLN,calculate.ci.rLNLN,calculate.ci.EXPLN,
-              r.sum.of.mixtures.LNLN,r.sum.of.mixtures.rLNLN,r.sum.of.mixtures.EXPLN,
-              d.sum.of.mixtures.LNLN,d.sum.of.mixtures.rLNLN,d.sum.of.mixtures.EXPLN,
-              mix.d.sum.of.mixtures.LNLN,mix.d.sum.of.mixtures.rLNLN,mix.d.sum.of.mixtures.EXPLN,
-              penalty.constraint.LNLN,penalty.constraint.rLNLN,penalty.constraint.EXPLN,
+              calculate.ci.LNLN,calculate.ci.rLNLN,calculate.ci.EXPLN,calculate.ci.NBNB,
+              r.sum.of.mixtures.LNLN,r.sum.of.mixtures.rLNLN,r.sum.of.mixtures.EXPLN,r.sum.of.mixtures.NBNB,
+              d.sum.of.mixtures.LNLN,d.sum.of.mixtures.rLNLN,d.sum.of.mixtures.EXPLN,d.sum.of.mixtures.NBNB,
+              mix.d.sum.of.mixtures.LNLN,mix.d.sum.of.mixtures.rLNLN,mix.d.sum.of.mixtures.EXPLN,mix.d.sum.of.mixtures.NBNB,
+              penalty.constraint.LNLN,penalty.constraint.rLNLN,penalty.constraint.EXPLN,penalty.constraint.NBNB,
               analyze.toycluster,
               analyze.sod2,
               generate.toydata,
-              stochasticProfilingData,stochasticProfilingML)
+              stochasticProfilingData,stochasticProfilingML,
+			  d_snb)
 importFrom(numDeriv, hessian)
 importFrom(MASS, ginv)
 importFrom("grDevices", "dev.off", "pdf")
@@ -19,3 +21,5 @@ importFrom("stats", "dgamma", "dlnorm", "dmultinom", "integrate",
                "optim", "qnorm", "rexp", "rlnorm", "rmultinom", "runif",
                "sd")
 importFrom("utils", "head", "read.table", "write.table")
+importFrom(Rcpp,evalCpp)
+useDynLib(stochprofML)

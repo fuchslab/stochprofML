@@ -1,0 +1,74 @@
+backtransform.par.NBNB <-
+function(this.par,m,fix.mu,fixed.mu) {
+# Transforms the parameter from all real numbers back to its original scale, i.e.
+#
+# INPUT:
+#    this.theta=(w1,w2,...w_(T-1),log(size),log(mu))
+# with
+#    w_i = logit((p_1+...+p_i)/(p_1+...+p_(i+1))) for i=1,...,T-1
+# and
+#    size = (size_1_gene_1,size_2_gene_1,...,size_T_gene_1,...,size_1_gene_2,size_2_gene_2,...,size_T_gene_2)
+# and
+#    mu = (mu_1_gene_1,mu_2_gene_1,...,mu_T_gene_1,...,mu_1_gene_2,mu_2_gene_2,...,mu_T_gene_2)
+#
+# OUTPUT:
+#    this.par=(p1,p2,...,p_(T-1),size,mu)
+#
+#
+# - this.par is the parameter in the unrestricted space
+# - m is the number of genes analyzed
+# - fix.mu is a Boolean indicating whether the parameter mu is kept fixed
+# - if fix.mu==T, mu is fixed to fixed.mu. In that case, this.par is lower-dimensional,
+#   i.e. it does not contain mu. The output is full-dimensional
+
+
+   # determine number of types of cells
+   # don't include fix.mu  -> is ignored in the NBNB case
+
+      TY <- (length(this.par)+1)/(2*m+1)
+
+
+   #######
+   ## p ##
+   #######
+
+   if (TY>1) {
+      this.w <- this.par[1:(TY-1)]
+      ## vector with sums of the probabilities
+      p.sums <- rep(NA,TY-1)
+      p.sums[length(p.sums)] <- stochprof.expit(this.w[length(this.w)])
+      if (TY>2) {
+         for (i in (length(p.sums)-1):1) {
+            p.sums[i] <- stochprof.expit(this.w[i]) * p.sums[i+1]
+         }
+      }
+      ## vector with probabilities
+      if (TY>2) {
+         p.sums.shifted <- c(0,p.sums[1:(length(p.sums)-1)])
+         this.p <- p.sums - p.sums.shifted
+      }
+      else {
+         this.p <- p.sums
+      }
+   }
+   else {
+      this.p <- NULL
+   }
+
+   ########
+   # size #
+   ######## needs to be postive
+   this.size <- exp(this.par[TY:((m+1)*TY-1)])
+
+
+   ######
+   # mu #
+   ###### needs to be positive
+   this.mu <- exp(this.par[((m+1)*TY):length(this.par)])
+
+
+   # put together
+   this.theta <- c(this.p,this.size,this.mu)
+
+   return(this.theta)
+}

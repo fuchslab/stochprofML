@@ -16,7 +16,7 @@ function(model,dataset,n,TY,genenames=NULL,fix.mu=F,fixed.mu,par.range=NULL,prev
 #
 # Parameters:
 #
-# - model is the chosen model, either "LN-LN", "rLN-LN" or "EXP-LN"
+# - model is the chosen model, either "LN-LN", "rLN-LN", "EXP-LN" or "NB-NB"
 # - dataset is a matrix which contains the cumulated expression data over all cells in a tissue sample.
 #   Columns represent different genes, rows represent different tissue samples.
 # - n is the number of cells taken from each tissue sample. This can also be a vector stating how many
@@ -68,7 +68,7 @@ function(model,dataset,n,TY,genenames=NULL,fix.mu=F,fixed.mu,par.range=NULL,prev
    # check for obvious mistakes
 
    # model has to be defined
-   if (!(model %in% c("LN-LN","rLN-LN","EXP-LN"))) {
+   if (!(model %in% c("LN-LN","rLN-LN","EXP-LN","NB-NB"))) {
       stop("stochprof.loop: unknown model.")
    }
    set.model.functions(model)
@@ -86,6 +86,9 @@ function(model,dataset,n,TY,genenames=NULL,fix.mu=F,fixed.mu,par.range=NULL,prev
       }
       else if (model=="rLN-LN") {
          correct.dim.pr <- (m+2)*TY
+      }
+      else if (model=="NB-NB") {
+         correct.dim.pr <- (2*m+2)*TY
       }
       else if (model=="EXP-LN") {
          if (TY==1) {
@@ -109,6 +112,7 @@ function(model,dataset,n,TY,genenames=NULL,fix.mu=F,fixed.mu,par.range=NULL,prev
       else if (model=="EXP-LN") {
          correct.dim.fm <- (TY-1)*m
       }
+
 
       if (length(fixed.mu)!=correct.dim.fm) {
          stop("stochprof.loop: fixed.mu does not have the correct length.")
@@ -141,6 +145,9 @@ function(model,dataset,n,TY,genenames=NULL,fix.mu=F,fixed.mu,par.range=NULL,prev
                }
                else if (method=="grid") {
                   M <- round(10^3/TY)
+                  #if (model=="NB-NB") {  # wieder entfernen, dauert gerade nur so lange
+                  #   M <- 100
+                  #}
                }
                else {
                   M <- round(10/TY)
@@ -205,6 +212,9 @@ function(model,dataset,n,TY,genenames=NULL,fix.mu=F,fixed.mu,par.range=NULL,prev
          else if (model=="rLN-LN") {
             this.number <- TY*length(this.set) + 3
          }
+         else if (model=="NB-NB") {
+        #    this.number <- TY*length(this.set) + 3
+         }
          par.numb <- par.numb + this.number
       }
       # plus number of parameters estimated in final analysis
@@ -215,6 +225,10 @@ function(model,dataset,n,TY,genenames=NULL,fix.mu=F,fixed.mu,par.range=NULL,prev
       if (model=="rLN-LN") {
          # F and sigma=(sigma_1,...,sigma_TY)
          par.numb <- par.numb + 1 + TY
+      }
+      if (model=="NB-NB") {
+         # F and sigma=(sigma_1,...,sigma_TY)
+         # par.numb <- par.numb + 1 + TY
       }
       if (model=="EXP-LN") {
          # F and sigma and lambda=(lambda^(1),...,lambda^(m))

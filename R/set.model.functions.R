@@ -74,4 +74,19 @@ function(model) {
       transform.par <<- transform.par.EXPLN
       mix.d.sum.of.mixtures <<- mix.d.sum.of.mixtures.EXPLN
    }
+   else if (model=="NB-NB") {
+       backtransform.par <<- backtransform.par.NBNB
+       calculate.ci <<- calculate.ci.NBNB
+       d.sum.of.mixtures <<- d.sum.of.mixtures.NBNB
+       mix.d.sum.of.mixtures <<- mix.d.sum.of.mixtures.NBNB
+       d.sum.of.types <<- d.sum.of.types.NBNB
+       draw.parameters <<- draw.parameters.NBNB
+       get.range <<- get.range.NBNB
+       penalty.constraint <<- penalty.constraint.NBNB
+       r.sum.of.mixtures <<- r.sum.of.mixtures.NBNB
+       stochprof.results <<- stochprof.results.NBNB
+       stochprof.search <<- stochprof.search.NBNB
+       transform.par <<- transform.par.NBNB
+       mix.d.sum.of.mixtures <<- mix.d.sum.of.mixtures.NBNB
+   }
 }
