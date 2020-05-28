@@ -1,5 +1,5 @@
 d.sum.of.mixtures.NBNB <-
-    function(y,n,p.vector,size.vector,mu.vector,logdens=T) {
+    function(y, n, p.vector, size.vector, mu.vector, logdens = TRUE) {
         # Density of a sum of independent random variables, where each random variable is
         # from the following mixture distribution: With probability p_i, it is of type i.
         # In that case, it is lognormally distributed with log-mean mu_i and log-standard

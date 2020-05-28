@@ -11,11 +11,11 @@ set.model.functions(model)
 }
 \arguments{
   \item{model}{
-model for which one wishes to estimate the parameters: "LN-LN", "rLN-LN" or "EXP-LN"
+model for which one wishes to estimate the parameters: "LN-LN", "rLN-LN", "EXP-LN" or "NB-NB"
 }
 }
 \value{
-Loads all model-specific functions and directs the general function to the model specific function, wich is the same but with the endings .LNLN, .rLNLN, and .EXPLN.
+Loads all model-specific functions and directs the general function to the model specific function, wich is the same but with the endings .LNLN, .rLNLN, .EXPLN. or .NBNB
 }
 
 \author{

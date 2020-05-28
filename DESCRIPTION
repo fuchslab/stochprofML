@@ -1,11 +1,12 @@
 Package: stochprofML
 Title: Stochastic Profiling using Maximum Likelihood Estimation
-Version: 2.0.3
-DateNote: Previous CRAN version 2.0.2 on 2020-05-14
+Version: 2.1.0
+DateNote: Previous CRAN version 2.0.3 on xxx
 Authors@R: c(
   person("Lisa", "Amrhein", email="amrheinlisa@gmail.com", role=c("aut", "cre")),
   person("Christiane", "Fuchs", email="christiane.fuchs@helmholtz-muenchen.de", role="aut"),
-  person("Christoph", "Kurz", email="christoph.kurz@helmholtz-muenchen.de", role="ctb", comment="Author to function comb.summands.R'"))
+  person("Harsha", "Kumar", email="kumar.harsha@tum.de", role="ctb", comment="Translated function 'd_snb' from R to C++"),
+  person("Christoph", "Kurz", email="christoph.kurz@helmholtz-muenchen.de", role="ctb", comment="Author to function 'comb.summands.R'"))
 Maintainer: Lisa Amrhein <amrheinlisa@gmail.com>
 Depends: R (>= 2.0)
 Imports: MASS, numDeriv, Rcpp (>= 0.12.10)

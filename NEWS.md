@@ -1,3 +1,7 @@
+# stochprofML 2.1.0
+* add NB-NB model to the package (and all corresponding functions).
+* function d_snb and C++ implementation added to calculate the PMF of a sum of negative binomal random varables. See "On the convolution of the negative binomial random variables" by Edward Furman: Statistics & Probability Letters 77 (2007) 169-172 <dow:10.1016/j.spl.2006.06.007>
+
 # stochprofML 2.0.3
 * export function set.model.function() as it is needed when using for example d.sum.of.mixtures.
 * in stochprof.results generate a duplicate of all previous results perform rounding of parameters and target and remove duplicates in the original result table, like this all results in the final output and used inside optimization are not rounded and belong 100% to the target negative loglikelihodd and BIC.

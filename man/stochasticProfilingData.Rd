@@ -10,7 +10,7 @@ Generation of a dataset of i.i.d measurements as considered in the stochastic pr
 stochasticProfilingData()
 }
 \details{
-This function generates a dataset of i.i.d synthetic measurements as considered in the stochastic profiling model. The user is prompted to input all required settings, e.g. the exact model (LN-LN, rLN-LN or EXP-LN), the number of samples, the number of populations etc. The dataset is returned as a matrix and visualized in histograms together with the data generating probability density function (pdf).
+This function generates a dataset of i.i.d synthetic measurements as considered in the stochastic profiling model. The user is prompted to input all required settings, e.g. the exact model (LN-LN, rLN-LN, EXP-LN or NB-NB), the number of samples, the number of populations etc. The dataset is returned as a matrix and visualized in histograms together with the data generating probability density function (pdf).
 }
 \value{
 A matrix containing the synthetic data. Columns stand for different genes, rows for samples.

@@ -1,5 +1,5 @@
 r.sum.of.mixtures.NBNB <-
-function(k,n,p.vector,size.vector,mu.vector,N.matrix = NULL) {
+function(k, n, p.vector, size.vector, mu.vector, N.matrix = NULL) {
 # Draws k i.i.d. random variables from the following distribution:
 # Each random variable is the sum of another n independent random variables.
 # These are from a mixture of lognormal distributions. More specifically,

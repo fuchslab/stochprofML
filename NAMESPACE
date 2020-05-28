@@ -1,7 +1,6 @@
-
 exportPattern(stochprof.search.LNLN,stochprof.search.rLNLN,stochprof.search.EXPLN,stochprof.search.NBNB,
               stochprof.results.LNLN,stochprof.results.rLNLN,stochprof.results.EXPLN,stochprof.results.NBNB,
-              stochprof.loop,set.model.funcions,
+              stochprof.loop,set.model.functions,
               calculate.ci.LNLN,calculate.ci.rLNLN,calculate.ci.EXPLN,calculate.ci.NBNB,
               r.sum.of.mixtures.LNLN,r.sum.of.mixtures.rLNLN,r.sum.of.mixtures.EXPLN,r.sum.of.mixtures.NBNB,
               d.sum.of.mixtures.LNLN,d.sum.of.mixtures.rLNLN,d.sum.of.mixtures.EXPLN,d.sum.of.mixtures.NBNB,

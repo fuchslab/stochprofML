@@ -10,15 +10,28 @@ d_snb(x, size_param = NULL, prob_param = NULL, mu_param = NULL,
 \arguments{
 \item{x}{numeric value or vector}
 
-\item{size_param, prob_param, mu_param, size, prob, mu}{numeric value or vector,
-atleast two of these parameters must be specified}
+\item{size_param, prob_param, mu_param}{numeric value or vector, two of these parameters must be specified and of same length. In a vector each entry stands for one negative binomial distribution. Parameters are defined as in NegBinomial in the stats package}
 
 \item{infinite}{integer value specifying the maximum number
 of terms to compute in the series, default: 100000}
 
-\item{log_v, log}{whether the results should be log values,
+\item{log_v}{whether the results should be log values,
 default: false}
 }
 \description{
-d_snb
+Function to evaluate the probability mass function of the convolution of several negative binomial random variables.
+}
+\author{
+Lisa Amrhein, Harsha Kumar
+
+Maintainer: Lisa Amrhein <amrheinlisa@gmail.com>
+}
+\details{
+We follow the implementation of the PMF described in Theorem 1 in Furman(2007). The infinite sum has to be cut at a point at which all folowing summands are zero. At maximum we calulate infinite which is per default 100.000 summands.
+}
+\keyword{ package }
+\keyword{ probability mass function }
+\keyword{ convolution of negative binomial random variables}
+\references{
+"On the convolution of the negative binomial random variables" by Edward Furman: Statistics & Probability Letters 77 (2007) 169-172 <dow:10.1016/j.spl.2006.06.007>
 }

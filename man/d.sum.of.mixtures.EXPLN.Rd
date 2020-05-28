@@ -63,7 +63,7 @@ mu <- 2
 sigma <- 0.3
 lambda <- 5
 
-stochprofML:::set.model.functions("EXP-LN")
+set.model.functions("EXP-LN")
 
 r <- r.sum.of.mixtures.EXPLN(10^4,10,p,mu,sigma,lambda)
 hist(r,xlab="Sum of mixtures of lognormals",freq=FALSE,breaks=100,ylim=c(0,0.2))

@@ -10,7 +10,7 @@ Maximum likelihood estimation for the parameters in the stochastic profiling mod
 stochasticProfilingML()
 }
 \details{
-The function performs maximum likelihood estimation for the parameters in the stochastic profiling model. The user is prompted to input the data and all required settings, i.e. especially the data, but also the exact model (LN-LN, rLN-LN or EXP-LN), the number of populations, the number of cells per sample etc. The data can either be entered manually, or it can be read from a file, or the user enters the name of a variable which contains the data.
+The function performs maximum likelihood estimation for the parameters in the stochastic profiling model. The user is prompted to input the data and all required settings, i.e. especially the data, but also the exact model (LN-LN, rLN-LN, EXP-LN or NB-NB), the number of populations, the number of cells per sample etc. The data can either be entered manually, or it can be read from a file, or the user enters the name of a variable which contains the data.
 }
 \value{
 A list as returned by \code{stochprof.loop}, i.e. the following components:

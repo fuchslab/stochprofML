@@ -14,7 +14,7 @@ stochprof.loop(model, dataset, n, TY, genenames = NULL, fix.mu = F,
 }
 \arguments{
   \item{model}{
-model for which one wishes to estimate the parameters: "LN-LN", "rLN-LN" or "EXP-LN"
+model for which one wishes to estimate the parameters: "LN-LN", "rLN-LN","EXP-LN" or "NB-NB"
 }
   \item{dataset}{
 matrix which contains the cumulated expression data over all cells in a tissue sample. Columns represent different genes, rows represent different tissue samples.
