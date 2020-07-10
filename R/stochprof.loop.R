@@ -1,5 +1,5 @@
 stochprof.loop <-
-function(model,dataset,n,TY,genenames=NULL,fix.mu=F,fixed.mu,par.range=NULL,prev.result=NULL,loops=5,until.convergence=T,print.output=T,show.plots=T,plot.title="",pdf.file,use.constraints=F,subgroups) {
+function(model,dataset,n,TY,genenames=NULL,fix.mu=F,fixed.mu  = NULL,par.range=NULL,prev.result=NULL,loops=5,until.convergence=T,print.output=T,show.plots=T,plot.title="",pdf.file,use.constraints=F,subgroups, n.cl=NULL) {
 # This function carries out maximum likelihood estimation for the parameters in the
 # stochastic profiling model. Because the log-likelihood function is multimodal, no
 # straightforward use of gradient-based approaches for finding globally optimal parameter
@@ -155,7 +155,7 @@ function(model,dataset,n,TY,genenames=NULL,fix.mu=F,fixed.mu,par.range=NULL,prev
 
                # compute log-likelihood
 
-               result <- stochprof.search(dataset=dataset,genenames=genenames,n=n,method=method,TY=TY,M=M,print.output=print.output,par.range=this.range,fix.mu=fix.mu,fixed.mu=fixed.mu,prev.result=result,use.constraints=use.constraints)
+               result <- stochprof.search(dataset=dataset,genenames=genenames,n=n,method=method,TY=TY,M=M,print.output=print.output,par.range=this.range,fix.mu=fix.mu,fixed.mu=fixed.mu,prev.result=result,use.constraints=use.constraints, n.cl=n.cl)
             }
          }
       }

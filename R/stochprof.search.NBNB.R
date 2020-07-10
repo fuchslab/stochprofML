@@ -1,5 +1,5 @@
 stochprof.search.NBNB <-
-function(dataset,n,TY,method="grid",M=10,par.range=NULL,prev.result=NULL,fix.mu=F,fixed.mu,genenames=NULL,print.output=F,use.constraints=F) {
+function(dataset,n,TY,method="grid",M=10,par.range=NULL,prev.result=NULL,fix.mu=F,fixed.mu,genenames=NULL,print.output=F,use.constraints=F, n.cl=NULL) {
 # Calculates the log likelihood function of all model parameters for a given dataset
 # at certain parameter values. The so-obtained values are returned in a matrix with
 # the following entries: Each row corresponds to one parameter combination. All columns
@@ -213,51 +213,135 @@ function(dataset,n,TY,method="grid",M=10,par.range=NULL,prev.result=NULL,fix.mu=
    ## estimation: optimization step ##
    ###################################
 
+
+
+
+
+
    #--------------#
    # optim method #
    #--------------#
    if (method=="optim") {
-      for (i in 1:M) {
-         # draw starting value
-         par0 <- draw.parameters(ranges,m) # full-dim.
+      if(!is.null(n.cl)){
+         library(foreach)
+         n.cl  <- floor(n.cl)
+         cl <- parallel::makeCluster(n.cl)
+         doParallel::registerDoParallel(cl)
+         on.exit(parallel::stopCluster(cl))
+         parallel_results <- foreach(i = 1:M, .combine = 'rbind', .export = ls(globalenv())) %dopar% {
+            set.model.functions("NB-NB")
+               # draw starting value
+               par0 <- draw.parameters(ranges,m) # full-dim.
 
-         if (print.output) {  # putput before optim starts so that I cans ee if something wents wrong in optim
-            cat("---\n")
-            cat("Start optim at:\n")
-            cat(par0,"\n")
+               #if (print.output) {  # putput before optim starts so that I cans ee if something wents wrong in optim
+               #   cat("---\n")
+               #   cat("Start optim at:\n")
+               #   cat(par0,"\n")
+               #}
+
+               theta0 <- transform.par(this.par=par0,m=m)
+
+               theta0[theta0==-Inf] <- -10^7
+               theta0[theta0==Inf] <- 10^7
+
+               # numerically optimize
+               if (length(theta0)==1) {
+                  result <- optim(theta0,fn=to.minimize,control=list(maxit=10^5),method="Brent",hessian=F, lower=-10^7, upper=10^7)
+               }
+               else {
+                  result <- optim(theta0,fn=to.minimize,control=list(maxit=10^5),method="Nelder-Mead",hessian=F)
+               }
+
+               # result
+               this.theta <- result$par
+               this.par <- backtransform.par(this.par=this.theta,m=m)
+               this.value <- result$value
+
+               # attach new result to all former ones
+               c(this.par,this.value)
+
+               #if (print.output) {
+               #   cat("Arrived at:\n")
+               #   cat(this.par,"\n")
+         }
+         all.results <- rbind(all.results, parallel_results)
+
+      } else {
+
+         for (i in 1:M) {
+            # draw starting value
+            par0 <- draw.parameters(ranges,m) # full-dim.
+
+            if (print.output) {  # putput before optim starts so that I cans ee if something wents wrong in optim
+               cat("---\n")
+               cat("Start optim at:\n")
+               cat(par0,"\n")
+            }
+
+            theta0 <- transform.par(this.par=par0,m=m)
+
+            theta0[theta0==-Inf] <- -10^7
+            theta0[theta0==Inf] <- 10^7
+
+            # numerically optimize
+            if (length(theta0)==1) {
+               result <- optim(theta0,fn=to.minimize,control=list(maxit=10^5),method="Brent",hessian=F, lower=-10^7, upper=10^7)
+            }
+            else {
+               result <- optim(theta0,fn=to.minimize,control=list(maxit=10^5),method="Nelder-Mead",hessian=F)
+            }
+
+            # result
+            this.theta <- result$par
+            this.par <- backtransform.par(this.par=this.theta,m=m)
+            this.value <- result$value
+
+            # attach new result to all former ones
+            all.results <- rbind(all.results,c(this.par,this.value))
+
+            if (print.output) {
+               cat("Arrived at:\n")
+               cat(this.par,"\n")
+            }
          }
 
-         theta0 <- transform.par(this.par=par0,m=m)
-
-         theta0[theta0==-Inf] <- -10^7
-         theta0[theta0==Inf] <- 10^7
-
-         # numerically optimize
-         if (length(theta0)==1) {
-            result <- optim(theta0,fn=to.minimize,control=list(maxit=10^5),method="Brent",hessian=F, lower=-10^7, upper=10^7)
-         }
-         else {
-            result <- optim(theta0,fn=to.minimize,control=list(maxit=10^5),method="Nelder-Mead",hessian=F)
-         }
-
-         # result
-         this.theta <- result$par
-         this.par <- backtransform.par(this.par=this.theta,m=m)
-         this.value <- result$value
-
-         # attach new result to all former ones
-         all.results <- rbind(all.results,c(this.par,this.value))
-
-         if (print.output) {
-            cat("Arrived at:\n")
-            cat(this.par,"\n")
-         }
       }
+
    }
    #-------------#
    # grid search #
    #-------------#
    else if (method=="grid") {
+      if(!is.null(n.cl)){
+         library(foreach)
+         n.cl  <- floor(n.cl)
+         cl <- parallel::makeCluster(n.cl)
+         doParallel::registerDoParallel(cl)
+         on.exit(parallel::stopCluster(cl))
+         parallel_results <- foreach(i = 1:M, .combine = 'rbind', .export = ls(globalenv())) %dopar% {
+            set.model.functions("NB-NB")
+            # randomly draw parameter
+            this.par <- draw.parameters(ranges,m) # full-dim
+            this.theta <- transform.par(this.par=this.par,m=m)
+
+            # if (print.output) {
+            #    cat("---\n")
+            #   cat("Compute grid at:\n")
+            #   cat(this.par,"\n")
+            #}
+
+            # target function
+            this.value <- to.minimize(this.theta)
+            # attach new result to all former ones
+            c(this.par,this.value)
+
+
+         }
+         all.results <- rbind(all.results, parallel_results)
+
+
+
+      } else {
       for (i in 1:M) {
          # randomly draw parameter
          this.par <- draw.parameters(ranges,m) # full-dim
@@ -273,6 +357,7 @@ function(dataset,n,TY,method="grid",M=10,par.range=NULL,prev.result=NULL,fix.mu=
          this.value <- to.minimize(this.theta)
          # attach new result to all former ones
          all.results <- rbind(all.results,c(this.par,this.value))
+      }
       }
    }
 

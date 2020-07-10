@@ -1,5 +1,5 @@
 stochprof.search.EXPLN <-
-function(dataset,n,TY,method="grid",M=10,par.range=NULL,prev.result=NULL,fix.mu=F,fixed.mu,genenames=NULL,print.output=F,use.constraints=F) {
+function(dataset,n,TY,method="grid",M=10,par.range=NULL,prev.result=NULL,fix.mu=F,fixed.mu,genenames=NULL,print.output=F,use.constraints=F, n.cl=NULL) {
 # Calculates the log likelihood function of all model parameters for a given dataset
 # at certain parameter values. The so-obtained values are returned in a matrix with
 # the following entries: Each row corresponds to one parameter combination. All columns
