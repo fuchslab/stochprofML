@@ -265,7 +265,8 @@ function(dataset,n,TY,method="grid",M=10,par.range=NULL,prev.result=NULL,fix.mu=
                #   cat(this.par,"\n")
          }
          if(print.output){
-            cat(parallel_results)
+            cat("Optimization results:")
+            print(parallel_results)
          }
          all.results <- rbind(all.results, parallel_results)
 
@@ -341,7 +342,8 @@ function(dataset,n,TY,method="grid",M=10,par.range=NULL,prev.result=NULL,fix.mu=
 
          }
          if(print.output){
-            cat(parallel_results)
+            cat("Compute grid at:")
+            print(parallel_results)
          }
          all.results <- rbind(all.results, parallel_results)
 
