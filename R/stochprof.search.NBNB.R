@@ -264,6 +264,9 @@ function(dataset,n,TY,method="grid",M=10,par.range=NULL,prev.result=NULL,fix.mu=
                #   cat("Arrived at:\n")
                #   cat(this.par,"\n")
          }
+         if(print.output){
+            cat(parallel_results)
+         }
          all.results <- rbind(all.results, parallel_results)
 
       } else {
@@ -336,6 +339,9 @@ function(dataset,n,TY,method="grid",M=10,par.range=NULL,prev.result=NULL,fix.mu=
             c(this.par,this.value)
 
 
+         }
+         if(print.output){
+            cat(parallel_results)
          }
          all.results <- rbind(all.results, parallel_results)
 
