@@ -225,8 +225,9 @@ function(dataset,n,TY,method="grid",M=10,par.range=NULL,prev.result=NULL,fix.mu=
       if(!is.null(n.cl)){
          library(foreach)
          n.cl.par  <- floor(min(M,n.cl))
-         #cl <- parallel::makeCluster(n.cl)
-         doParallel::registerDoParallel(cores = n.cl.par)
+         cl <- parallel::makeCluster(n.cl.par)
+         #doParallel::registerDoParallel(cores = n.cl.par)
+         doParallel::registerDoParallel(cl)
          parallel_results <- foreach(i = 1:M, .combine = 'rbind', .export = ls(globalenv())) %dopar% {
             set.model.functions("NB-NB")
                # draw starting value
@@ -263,7 +264,7 @@ function(dataset,n,TY,method="grid",M=10,par.range=NULL,prev.result=NULL,fix.mu=
                #   cat("Arrived at:\n")
                #   cat(this.par,"\n")
          }
-         #parallel::stopCluster(cl)
+         parallel::stopCluster(cl)
          if(print.output){
             cat("Optimization results:")
             print(parallel_results)
@@ -319,8 +320,9 @@ function(dataset,n,TY,method="grid",M=10,par.range=NULL,prev.result=NULL,fix.mu=
       if(!is.null(n.cl)){
          library(foreach)
          n.cl.par  <- floor(min(M,n.cl))
-         #cl <- parallel::makeCluster(n.cl)
-         doParallel::registerDoParallel(cores = n.cl.par)
+         cl <- parallel::makeCluster(n.cl.par)
+         #doParallel::registerDoParallel(cores = n.cl.par)
+         doParallel::registerDoParallel(cl)
          parallel_results <- foreach(i = 1:M, .combine = 'rbind', .export = ls(globalenv())) %dopar% {
             set.model.functions("NB-NB")
             # randomly draw parameter
@@ -340,7 +342,7 @@ function(dataset,n,TY,method="grid",M=10,par.range=NULL,prev.result=NULL,fix.mu=
 
 
          }
-         #parallel::stopCluster(cl)
+         parallel::stopCluster(cl)
          if(print.output){
             cat("Compute grid at:")
             print(parallel_results)
