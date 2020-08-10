@@ -67,9 +67,9 @@ function(prev.result,TY,show.plots=T,plot.title="",pdf.file,fix.mu) {
    #########################
 
    # round all entries to these numbers of decimals
-   nod.p <- 10
-   nod.all <- 10
-   nod.target <- 10
+   nod.p <- 4
+   nod.all <- 3
+   nod.target <- 4
 
    if (TY>1) {
       p.indices <- 1:(TY-1)
@@ -79,12 +79,14 @@ function(prev.result,TY,show.plots=T,plot.title="",pdf.file,fix.mu) {
    }
    target.indices <- (2*m+1)*TY
 
-   results[,p.indices] <- round(results[,p.indices],nod.p)
-   results[,-c(p.indices,target.indices)] <- round(results[,-c(p.indices,target.indices)],nod.all)
-   results[,target.indices] <- round(results[,target.indices],nod.target)
+   results_dup <- results
+
+   results_dup[,p.indices] <- round(results_dup[,p.indices],nod.p)
+   results_dup[,-c(p.indices,target.indices)] <- round(results_dup[,-c(p.indices,target.indices)],nod.all)
+   results_dup[,target.indices] <- round(results_dup[,target.indices],nod.target)
 
    # remove doubles
-   results <- unique(results,MARGIN=1)
+   results <- results[!duplicated(results_dup,MARGIN=1),]
 
    ########
    # sort #

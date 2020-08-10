@@ -74,7 +74,7 @@ function(alpha,parameter,prev.result,dataset,n,TY,fix.mu=F,fixed.mu) {
       # consider negative log likelihood because the target function will be minimized
       this.sum <- 0
       for (g in 1:m) {
-         this.sum <- this.sum - loglikeli(dataset[,g],p,size.matrix[g,,drop=T],mu.matrix[g,,drop=T])
+         this.sum <- this.sum - loglikeli(dataset[,g, drop=F],p,size.matrix[g,,drop=T],mu.matrix[g,,drop=T])
       }
       return(this.sum)
    }

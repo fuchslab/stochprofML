@@ -265,6 +265,7 @@ function(dataset,n,TY,method="grid",M=10,par.range=NULL,prev.result=NULL,fix.mu=
                #   cat(this.par,"\n")
          }
          parallel::stopCluster(cl)
+         rownames(parallel_results) <- NULL
          if(print.output){
             cat("Optimization results:")
             print(parallel_results)
@@ -342,6 +343,7 @@ function(dataset,n,TY,method="grid",M=10,par.range=NULL,prev.result=NULL,fix.mu=
 
 
          }
+         rownames(parallel_results) <- NULL
          parallel::stopCluster(cl)
          if(print.output){
             cat("Compute grid at:")
