@@ -53,11 +53,9 @@ function(prev.result,TY,show.plots=T,plot.title="",pdf.file,fix.mu) {
    mu.min <- apply(X=results[,((m+1)*TY):(TY*(2*m+1)-1),drop=F],FUN=min,MARGIN=1)
    mu.max <- apply(X=results[,((m+1)*TY):(TY*(2*m+1)-1),drop=F],FUN=max,MARGIN=1)
 
-   smallsize.indices <- which(size.min<(0.00001))
-   largesize.indices <- which(size.max>1000)
-   smallmu.indices <- which(mu.min<(0.00001))
-   largemu.indices <- which(mu.max>1000)
-   mu.indices <- union(smallmu.indices,union(largemu.indices,union(smallsize.indices,largesize.indices)))
+   smallmu.indices <- which(mu.min<(exp(-50)))
+   largemu.indices <- which(mu.max>exp(10))
+   mu.indices <- union(smallmu.indices, largemu.indices)
    if ((length(mu.indices)>0) && (length(mu.indices)<nrow(results))) {
       results <- results[-mu.indices,,drop=F]
    }
