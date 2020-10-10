@@ -1,6 +1,6 @@
-\name{d.sum.of.mixtures.rNBNB}
-\alias{d.sum.of.mixtures.rNBNB}
-\alias{r.sum.of.mixtures.rNBNB}
+\name{d.sum.of.mixtures.NBNB}
+\alias{d.sum.of.mixtures.NBNB}
+\alias{r.sum.of.mixtures.NBNB}
 \title{
 Sums of mixtures of negative binomial random variables
 }

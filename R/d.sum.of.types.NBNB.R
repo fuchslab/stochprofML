@@ -39,15 +39,19 @@ d.sum.of.types.NBNB <-
         full.size.vector <- size.vector * j.vector
         full.mu.vector <- mu.vector *  j.vector
 
+
+
         if (sum(j.vector == 0) > 0){
             del <- which(j.vector == 0)
             full.size.vector <- full.size.vector[-del]
             full.mu.vector <- full.mu.vector[-del]
         }
-
-
-        # pass these extended mu and sigma vectors to the actual approximation
-        # of the density of sums of lognormals
-        d <- d_snb(y, size_param = full.size.vector, mu_param = full.mu.vector)
+        if(sum(j.vector)==1){
+        d <- dnbinom <- dnbinom(y, size = full.size.vector, mu = full.mu.vector)
+        }else{
+            # pass these extended mu and sigma vectors to the actual approximation
+            # of the density of sums of lognormals
+                d <- d_snb(y, size_param = full.size.vector, mu_param = full.mu.vector)
+        }
         if (logdens) { log(d) } else { d }
     }
