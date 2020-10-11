@@ -27,9 +27,9 @@ function(dataset,parameter,smoothingpar=10^5) {
                x <- x[order(x)]
             }
             # density of nbs i at these values, has to be rounded as NB can only handle integers
-            d.NB1 <- d_snb( round(x), size = size[i, g], mu = mu[i, g])
+            d.NB1 <- d_snb( round(x), size_param = size[i, g], mu_param = mu[i, g])
             # density of nbs i+1 at these values, has to be rounded as NB can only handle integers
-            d.NB2 <- d_snb( round(x), size = size[i+1, g], mu = mu[i+1, g])
+            d.NB2 <- d_snb( round(x), size_param = size[i+1, g], mu_param = mu[i+1, g])
             # penalize if d.NB2>d.NB1
             pen <- pen + sum(pmax(0,d.NB2-d.NB1)^2)
             # now check whether population i+1 is peaked; in that case, the function d_snb

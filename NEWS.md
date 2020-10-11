@@ -1,5 +1,6 @@
 # stochprofML 2.1.0
 * add NB-NB model to the package (and all corresponding functions).
+* Allow parallel computation
 * Simplified calculations if n= 0 and no sum is needed
 * function d_snb and C++ implementation added to calculate the PMF of a sum of negative binomal random varables. See "On the convolution of the negative binomial random variables" by Edward Furman: Statistics & Probability Letters 77 (2007) 169-172 <dow:10.1016/j.spl.2006.06.007>
 

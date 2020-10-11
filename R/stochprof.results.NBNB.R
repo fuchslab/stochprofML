@@ -1,5 +1,5 @@
 stochprof.results.NBNB <-
-function(prev.result,TY,show.plots=T,plot.title="",pdf.file,fix.mu) {
+function(prev.result,TY,show.plots=T,plot.title="",pdf.file,fix.mu=F) {
 # Evaluates the set of results that are contained in prev.result. That means, it removes
 # entries where the target function is equal to infinity, it removes double entries,
 # it removes unlikely parameter combinations (if there are too many) etc. When show.plots==T,

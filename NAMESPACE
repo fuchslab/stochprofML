@@ -18,7 +18,8 @@ importFrom("graphics", "abline", "hist", "legend", "lines", "par",
                "plot")
 importFrom("stats", "dgamma", "dlnorm", "dmultinom", "integrate",
                "optim", "qnorm", "rexp", "rlnorm", "rmultinom", "runif",
-               "sd")
+                "dnbinom", "rnbinom", "sd")
 importFrom("utils", "head", "read.table", "write.table")
+importFrom(foreach,"%dopar%","foreach")
 importFrom(Rcpp,evalCpp)
 useDynLib(stochprofML)

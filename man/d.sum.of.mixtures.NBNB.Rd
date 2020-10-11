@@ -8,7 +8,7 @@ Sums of mixtures of negative binomial random variables
 Density and random generation of a sum of i.i.d. random variables, where each random variable is from the following mixture distribution: With probability p_i, it is of type i. In that case, it is negative binomially distributed with size alpha_i and mean mu_i.
 }
 \usage{
-d.sum.of.mixtures.NBNB(y, n, p.vector, size.vector, mu.vector, logdens = T)
+d.sum.of.mixtures.NBNB(y, n, p.vector, size.vector, mu.vector, logdens = TRUE)
 r.sum.of.mixtures.NBNB(k, n, p.vector, size.vector, mu.vector, N.matrix)
 }
 \arguments{
@@ -61,7 +61,7 @@ hist(r, xlab = "Sum of mixtures of lognormals", freq = FALSE, breaks = 100, ylim
 
 # plot according theoretical density function
 x <- seq(round(min(r)), round(max(r)),(round(max(r))-round(min(r)))/500)
-y <- d.sum.of.mixtures.NBNB(x, 10, p, mu, sigma, logdens = FALSE)
+y <- d.sum.of.mixtures.NBNB(x, 10, p, mu, size, logdens = FALSE)
 lines(x, y, col="blue", lwd = 3)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

@@ -10,7 +10,7 @@ Maximum likelihood estimation for the parameters in the stochastic profiling mod
 stochprof.loop(model, dataset, n, TY, genenames = NULL, fix.mu = F,
    fixed.mu, par.range = NULL, prev.result = NULL, loops = 5,
    until.convergence = T, print.output = T, show.plots = T,
-   plot.title = "", pdf.file, use.constraints = F, subgroups)
+   plot.title = "", pdf.file, use.constraints = F, subgroups, n.cl = NULL)
 }
 \arguments{
   \item{model}{
@@ -69,6 +69,9 @@ if TRUE, constraints on the individual population densities are applied; see \co
 }
   \item{subgroups}{
 list of sets of gene numbers. This parameter should be given only when the present call of \code{stochprof.loop} is based on a subanalysis of the subgroups of genes with non-fixed mu. The parameter is used only for calculation of the adjusted BIC which takes into account the number of parameters that had to be estimated during the whole estimation procedure: First, for each of the subclusters, and then for the final analysis.
+}
+  \item{n.cl}{
+number of cores for parallel computing. Default is NULL.
 }
 }
 \details{

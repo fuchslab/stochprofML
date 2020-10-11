@@ -9,7 +9,7 @@ Calculates the log likelihood function of the parameters of the LN-LN model for 
 \usage{
 stochprof.search.LNLN(dataset, n, TY, method = "grid", M = 10,
    par.range = NULL, prev.result = NULL, fix.mu = F, fixed.mu,
-   genenames = NULL, print.output = F, use.constraints = F)
+   genenames = NULL, print.output = F, use.constraints = F, n.cl = NULL)
 }
 \arguments{
   \item{dataset}{
@@ -54,6 +54,9 @@ if TRUE, interim results of the grid search and numerical optimization are print
 }
   \item{use.constraints}{
 if TRUE, constraints on the individual population densities are applied; see \code{penalty.constraint.LNLN} for details.
+}
+  \item{n.cl}{
+number of cores for parallel computing. Default is NULL.
 }
 }
 \details{

@@ -223,7 +223,7 @@ function(dataset,n,TY,method="grid",M=10,par.range=NULL,prev.result=NULL,fix.mu=
    #--------------#
    if (method=="optim") {
       if(!is.null(n.cl)){
-         library(foreach)
+         #library(foreach)
          n.cl.par  <- floor(min(M,n.cl))
          cl <- parallel::makeCluster(n.cl.par)
          #doParallel::registerDoParallel(cores = n.cl.par)
@@ -319,7 +319,7 @@ function(dataset,n,TY,method="grid",M=10,par.range=NULL,prev.result=NULL,fix.mu=
    #-------------#
    else if (method=="grid") {
       if(!is.null(n.cl)){
-         library(foreach)
+         #library(foreach)
          n.cl.par  <- floor(min(M,n.cl))
          cl <- parallel::makeCluster(n.cl.par)
          #doParallel::registerDoParallel(cores = n.cl.par)
